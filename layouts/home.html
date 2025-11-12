@@ -1,0 +1,97 @@
+{{- /*
+=============================================================================
+HOME PAGE TEMPLATE (home.html)
+=============================================================================
+Template for the home page. Shows a personal business card with portrait,
+bio and social media links, as well as the latest blog posts.
+
+Usage:
+- Automatically used for the home page (/)
+- Requires front matter parameters in content/_index.md:
+  - portrait: Path to profile image (optional, fallback: img/portrait.png)
+  - socialLinks: Array with links (url, icon, name)
+
+Structure:
+1. About me section (hero) with profile image and bio
+2. Social media buttons
+3. Latest 3 blog posts as cards
+4. Link to full post overview
+=============================================================================
+*/ -}}
+
+{{ define "main" }}
+<section class="section">
+  <div class="container is-max-desktop">
+    
+    {{- /* ===================================================================
+         ABOUT ME / BUSINESS CARD
+         =================================================================== */ -}}
+    <div class="hero is-small about-hero">
+      <div class="hero-body">
+        <div class="columns is-vcentered">
+          
+          {{- /* Profile image - left */ -}}
+          <div class="column is-narrow">
+            <figure class="image is-128x128">
+              {{- /* Profile image from front matter or fallback */ -}}
+              {{ with .Params.portrait }}
+              <img class="is-rounded about-portrait" src="{{ . }}" alt="Portrait">
+              {{ else }}
+              <img class="is-rounded about-portrait" src="img/portrait.png" alt="Portrait Placeholder">
+              {{ end }}
+            </figure>
+          </div>
+          
+          {{- /* Bio text and social links - right */ -}}
+          <div class="column">
+            <div class="content about-content">
+              {{- /* Content from _index.md (Markdown converted to HTML) */ -}}
+              {{ .Content }}
+              
+              {{- /* Social media buttons (optional) */ -}}
+              {{ if .Params.socialLinks }}
+              <div class="buttons are-small mt-4">
+                {{ range .Params.socialLinks }}
+                <a href="{{ .url }}" class="button is-light has-text-primary-dark" 
+                   {{- /* Open external links in new tab, except mailto: */ -}}
+                   {{ if not (hasPrefix .url "mailto:") }}target="_blank" rel="noopener"{{ end }}>
+                  <span class="icon">
+                    <i class="{{ .icon }}"></i>
+                  </span>
+                  <span>{{ .name }}</span>
+                </a>
+                {{ end }}
+              </div>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{- /* ===================================================================
+         RECENT BLOG POSTS
+         =================================================================== */ -}}
+    <div class="mt-6">
+      <h2 class="title is-3 has-text-primary-dark mb-4">Aktuelle Blog-Posts</h2>
+      
+      {{- /* Get all pages from "posts" section and show first 3 */ -}}
+      {{ $posts := where .Site.RegularPages "Section" "posts" }}
+      {{ range first 3 $posts }}
+        {{- /* Use reusable post-card component */ -}}
+        {{ partial "post-card.html" . }}
+      {{ end }}
+      
+      {{- /* Link to all posts */ -}}
+      <div class="has-text-centered mt-5">
+        <a href="/posts/" class="button is-light">
+          <span class="icon">
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+          <span>Alle Blog-Posts ansehen</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

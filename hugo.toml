@@ -1,0 +1,33 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-US'
+title = 'My New Hugo Site'
+version = '0.0.1'
+
+[pagination]
+  pagerSize = 10
+
+[menus]
+  [[menus.main]]
+    name = 'Home'
+    pageRef = '/'
+    weight = 10
+
+  [[menus.main]]
+    name = 'Posts'
+    pageRef = '/posts'
+    weight = 20
+
+  [[menus.main]]
+    name = 'Tools'
+    pageRef = '/tools'
+    weight = 30
+
+  [[menus.main]]
+    name = 'Tags'
+    pageRef = '/tags'
+    weight = 40
+
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = '0.152.0'

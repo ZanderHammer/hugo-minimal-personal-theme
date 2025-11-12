@@ -1,0 +1,48 @@
+{{- /*
+=============================================================================
+TERMS PARTIAL (terms.html)
+=============================================================================
+Displays all terms (e.g. tags) of a given taxonomy that are assigned
+to the current page.
+
+Usage:
+{{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+
+Parameters:
+@param {page} page - The current page
+@param {string} taxonomy - Name of the taxonomy (e.g. "tags", "categories")
+
+Output:
+- Taxonomy label (e.g. "Tags:")
+- List of all terms as links
+
+Example:
+Tags:
+- Hugo
+- Web Development
+- Static Sites
+
+Note:
+- Currently not used in standard templates
+- Can be used for extended taxonomy features
+=============================================================================
+*/ -}}
+
+{{- $page := .page }}
+{{- $taxonomy := .taxonomy }}
+
+{{- /* Get all terms of the taxonomy for this page */ -}}
+{{- with $page.GetTerms $taxonomy }}
+  {{- /* Get label from first term (e.g. "Tags", "Categories") */ -}}
+  {{- $label := (index . 0).Parent.LinkTitle }}
+  <div>
+    {{- /* Display taxonomy label */ -}}
+    <div>{{ $label }}:</div>
+    {{- /* List of all terms */ -}}
+    <ul>
+      {{- range . }}
+        <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+      {{- end }}
+    </ul>
+  </div>
+{{- end }}

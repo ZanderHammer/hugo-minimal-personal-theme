@@ -1,0 +1,71 @@
+{{- /*
+=============================================================================
+CSS RESOURCES PARTIAL (head/css.html)
+=============================================================================
+Loads all CSS resources with optimal performance strategy.
+Differentiates between development and production mode.
+
+Resources (in order):
+1. Bulma CSS Framework (bulma.min.css)
+2. Font Awesome Icons (fontawesome/css/all.min.css)
+3. Custom Styles (css/main.css)
+
+Performance strategy:
+- Development: Direct links for faster reload
+- Production: Minified + Fingerprinting + SRI hash
+
+Features:
+- Minification: Reduces file size
+- Fingerprinting: Cache busting on changes
+- SRI (Subresource Integrity): Security check for integrity
+- crossorigin="anonymous": CORS for SRI
+
+Usage:
+{{ partialCached "head/css.html" . }}
+=============================================================================
+*/ -}}
+
+{{- /* ===================================================================
+     BULMA CSS FRAMEWORK
+     =================================================================== */ -}}
+{{- with resources.Get "css/bulma.min.css" }}
+  {{- if hugo.IsDevelopment }}
+    {{- /* Development mode: Direct link */ -}}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{- else }}
+    {{- /* Production mode: Minification + Fingerprinting + SRI */ -}}
+    {{- with . | minify | fingerprint }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- /* ===================================================================
+     FONT AWESOME ICONS
+     =================================================================== */ -}}
+{{- with resources.Get "fontawesome/css/all.min.css" }}
+  {{- if hugo.IsDevelopment }}
+    {{- /* Development mode: Direct link */ -}}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{- else }}
+    {{- /* Production mode: Minification + Fingerprinting + SRI */ -}}
+    {{- with . | minify | fingerprint }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- /* ===================================================================
+     CUSTOM STYLES (THEME CSS)
+     =================================================================== */ -}}
+{{- with resources.Get "css/main.css" }}
+  {{- if hugo.IsDevelopment }}
+    {{- /* Development mode: Direct link */ -}}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{- else }}
+    {{- /* Production mode: Minification + Fingerprinting + SRI */ -}}
+    {{- with . | minify | fingerprint }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{- end }}
+  {{- end }}
+{{- end }}

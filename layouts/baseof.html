@@ -1,0 +1,47 @@
+{{- /*
+=============================================================================
+BASE TEMPLATE (baseof.html)
+=============================================================================
+Main template for all pages of the theme. Defines the basic HTML structure.
+All other templates extend this base template via the "main" block.
+
+Usage:
+- Automatically used by Hugo as base for all pages
+- Child templates define their content with: {{ define "main" }}...{{ end }}
+
+Structure:
+1. HTML head with language settings
+2. Head section (meta tags, CSS)
+3. Header (navigation, dark mode toggle)
+4. Main content area (filled by child templates)
+5. Footer
+6. JavaScript at the end for optimal performance
+=============================================================================
+*/ -}}
+
+<!DOCTYPE html>
+{{- /* HTML tag with language code and text direction from site configuration */ -}}
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+<head>
+  {{- /* Loads meta tags, title, dark mode script and CSS */ -}}
+  {{ partial "head.html" . }}
+</head>
+<body class="site-wrapper">
+  {{- /* Site header with navigation and dark mode toggle */ -}}
+  <header>
+    {{ partial "header.html" . }}
+  </header>
+  
+  {{- /* Main content area - overridden by child templates */ -}}
+  <main class="site-content">
+    {{ block "main" . }}{{ end }}
+  </main>
+  
+  {{- /* Site footer with copyright and links */ -}}
+  {{ partial "footer.html" . }}
+  
+  {{- /* Load JavaScript at the end for better performance
+       partialCached: Rendered only once and cached */ -}}
+  {{ partialCached "head/js.html" . }}
+</body>
+</html>

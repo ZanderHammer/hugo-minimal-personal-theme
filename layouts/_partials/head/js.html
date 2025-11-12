@@ -1,0 +1,61 @@
+{{- /*
+=============================================================================
+JAVASCRIPT RESOURCES PARTIAL (head/js.html)
+=============================================================================
+Loads JavaScript resources with optimal performance strategy.
+Should be loaded at the end of <body> for better performance.
+
+Resources:
+- js/main.js: Main JavaScript with dark mode toggle, etc.
+
+Build options:
+1. Development:
+   - No minification for better debugging
+   - External source maps for developer tools
+   - Fast reload
+
+2. Production:
+   - Minification for smaller file size
+   - No source maps
+   - Fingerprinting for cache busting
+   - SRI hash for security
+
+JavaScript features (main.js):
+- Dark mode toggle with localStorage persistence
+- Event handlers for UI interactions
+- Additional interactive functions
+
+Usage:
+{{ partialCached "head/js.html" . }}
+
+Note:
+- partialCached: Rendered only once for all pages
+- Place at end of <body> for non-blocking loading
+=============================================================================
+*/ -}}
+
+{{- with resources.Get "js/main.js" }}
+  {{- /* ===================================================================
+       DEFINE BUILD OPTIONS
+       =================================================================== */ -}}
+  {{- $opts := dict
+    "minify" (not hugo.IsDevelopment)
+    "sourceMap" (cond hugo.IsDevelopment "external" "")
+    "targetPath" "js/main.js"
+  }}
+  
+  {{- /* ===================================================================
+       BUILD AND OUTPUT JAVASCRIPT
+       =================================================================== */ -}}
+  {{- with . | js.Build $opts }}
+    {{- if hugo.IsDevelopment }}
+      {{- /* Development mode: Direct link with source maps */ -}}
+      <script src="{{ .RelPermalink }}"></script>
+    {{- else }}
+      {{- /* Production mode: Minified + Fingerprinting + SRI */ -}}
+      {{- with . | fingerprint }}
+        <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}

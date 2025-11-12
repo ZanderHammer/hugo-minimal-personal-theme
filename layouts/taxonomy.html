@@ -1,0 +1,90 @@
+{{- /*
+=============================================================================
+TAXONOMY TEMPLATE (taxonomy.html)
+=============================================================================
+Template for taxonomy overview pages (e.g. /tags/ - shows all tags).
+Shows all available terms of a taxonomy with count of associated posts.
+
+Usage:
+- Automatically used for /tags/
+- .Pages contains all tag pages
+- Each .Pages item has .LinkTitle (tag name) and .Pages (posts with this tag)
+
+Special features:
+- Cards in grid layout (responsive: 2-3 columns)
+- Shows number of posts per tag
+- Link to each tag leads to term page
+
+Structure:
+1. Page title with icon and count of all tags
+2. Grid with tag cards (name, count, link)
+=============================================================================
+*/ -}}
+
+{{ define "main" }}
+<section class="section">
+  <div class="container is-max-desktop">
+    
+    {{- /* ===================================================================
+         PAGE TITLE
+         =================================================================== */ -}}
+    <div class="mb-6 has-text-centered">
+      {{- /* Title with tags icon */ -}}
+      <h1 class="title is-2 has-text-primary-dark">
+        <i class="fa-solid fa-tags mr-2"></i>{{ .Title }}
+      </h1>
+      
+      {{- /* Optional description text */ -}}
+      {{ if .Content }}
+      <div class="content">
+        {{ .Content }}
+      </div>
+      {{ end }}
+      
+      {{- /* Total count of tags (singular/plural logic) */ -}}
+      <p class="subtitle is-5 has-text-grey">
+        {{ len .Pages }} {{ if eq (len .Pages) 1 }}Tag{{ else }}Tags{{ end }}
+      </p>
+    </div>
+
+    {{- /* ===================================================================
+         LIST OF TAGS WITH DETAILS
+         =================================================================== */ -}}
+    <div class="mt-6">
+      <h2 class="title is-4 has-text-primary-dark mb-4">Alle Tags im Detail</h2>
+      
+      {{- /* Responsive grid: 2 columns on tablet, 3 on desktop */ -}}
+      <div class="columns is-multiline">
+        {{ range .Pages }}
+        <div class="column is-half-tablet is-one-third-desktop">
+          {{- /* Card with fixed height for uniform grid */ -}}
+          <div class="card" style="height: 100%;">
+            <div class="card-content">
+              {{- /* Tag name with icon and link */ -}}
+              <p class="title is-5">
+                <a href="{{ .RelPermalink }}" class="has-text-primary-dark">
+                  <i class="fa-solid fa-tag mr-2"></i>{{ .LinkTitle }}
+                </a>
+              </p>
+              {{- /* Number of posts with this tag (singular/plural logic) */ -}}
+              <p class="subtitle is-6 has-text-grey">
+                {{ len .Pages }} {{ if eq (len .Pages) 1 }}Beitrag{{ else }}Beiträge{{ end }}
+              </p>
+            </div>
+            {{- /* Card footer with link */ -}}
+            <footer class="card-footer">
+              <a href="{{ .RelPermalink }}" class="card-footer-item has-text-medium-green">
+                <span class="icon">
+                  <i class="fa-solid fa-arrow-right"></i>
+                </span>
+                <span>Beiträge anzeigen</span>
+              </a>
+            </footer>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

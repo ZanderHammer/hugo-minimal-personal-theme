@@ -1,0 +1,81 @@
+{{- /*
+=============================================================================
+PAGINATION PARTIAL (pagination.html)
+=============================================================================
+Reusable pagination component in Bulma style.
+Shows prev/next buttons and page numbers for long lists.
+
+Usage:
+{{ $paginator := .Paginate .Pages }}
+{{ partial "pagination.html" $paginator }}
+
+Context: Expects a Paginator with:
+- .TotalPages: Total number of pages
+- .HasPrev/.HasNext: Boolean for prev/next availability
+- .Prev/.Next: Previous/Next Paginator objects
+- .Pagers: Array of all pages
+- .PageNumber: Current page number
+
+Features:
+1. "Previous"/"Next" buttons (disabled when not available)
+2. List of all page numbers
+3. Current page highlighted
+4. Full accessibility (ARIA labels)
+
+Display:
+- Only shown when more than one page exists
+- Centered layout
+=============================================================================
+*/ -}}
+
+{{- /* Only show if multiple pages exist */ -}}
+{{ if gt .TotalPages 1 }}
+<nav class="pagination is-centered mt-6" role="navigation" aria-label="pagination">
+  
+  {{- /* ===================================================================
+       PREVIOUS PAGE BUTTON
+       =================================================================== */ -}}
+  {{ if .HasPrev }}
+    {{- /* Link to previous page, if available */ -}}
+    <a href="{{ .Prev.URL }}" class="pagination-previous has-background-light-green">Vorherige</a>
+  {{ else }}
+    {{- /* Disabled button, if no previous page */ -}}
+    <a class="pagination-previous" disabled>Vorherige</a>
+  {{ end }}
+  
+  {{- /* ===================================================================
+       NEXT PAGE BUTTON
+       =================================================================== */ -}}
+  {{ if .HasNext }}
+    {{- /* Link to next page, if available */ -}}
+    <a href="{{ .Next.URL }}" class="pagination-next has-background-light-green">Nächste</a>
+  {{ else }}
+    {{- /* Disabled button, if no next page */ -}}
+    <a class="pagination-next" disabled>Nächste</a>
+  {{ end }}
+
+  {{- /* ===================================================================
+       PAGE NUMBER LIST
+       =================================================================== */ -}}
+  <ul class="pagination-list">
+    {{ range .Pagers }}
+      {{- /* Check if this is the current page */ -}}
+      {{ if eq .PageNumber $.PageNumber }}
+        {{- /* Current page: Highlighted and not clickable */ -}}
+        <li>
+          <a class="pagination-link is-current has-background-medium-green has-text-white" 
+             aria-label="Seite {{ .PageNumber }}" 
+             aria-current="page">{{ .PageNumber }}</a>
+        </li>
+      {{ else }}
+        {{- /* Other pages: Clickable links */ -}}
+        <li>
+          <a href="{{ .URL }}" 
+             class="pagination-link" 
+             aria-label="Gehe zu Seite {{ .PageNumber }}">{{ .PageNumber }}</a>
+        </li>
+      {{ end }}
+    {{ end }}
+  </ul>
+</nav>
+{{ end }}

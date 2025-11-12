@@ -1,0 +1,97 @@
+{{- /*
+=============================================================================
+SECTION TEMPLATE (section.html)
+=============================================================================
+Template for section overview pages (e.g. /posts/, /tools/).
+Shows title, description, optional tag cloud and paginated list of all pages.
+
+Usage:
+- Automatically used for section overviews
+- Requires _index.md in the respective section (e.g. content/posts/_index.md)
+
+Special features:
+- Tag cloud is shown for "posts" section
+- Supports pagination for large lists
+- Shows the 15 most frequent tags
+
+Structure:
+1. Page title and description
+2. Tag cloud (posts section only)
+3. List of all pages as cards
+4. Pagination
+=============================================================================
+*/ -}}
+
+{{ define "main" }}
+<section class="section">
+  <div class="container is-max-desktop">
+    
+    {{- /* ===================================================================
+         PAGE TITLE AND DESCRIPTION
+         =================================================================== */ -}}
+    <div class="mb-6">
+      <h1 class="title is-2 has-text-primary-dark">{{ .Title }}</h1>
+      {{- /* Optional description text from _index.md */ -}}
+      {{ if .Content }}
+      <div class="content">
+        {{ .Content }}
+      </div>
+      {{ end }}
+    </div>
+
+    {{- /* ===================================================================
+         TAG CLOUD (posts section only)
+         =================================================================== */ -}}
+    {{ if eq .Section "posts" }}
+    <div class="box tag-cloud-box mb-6">
+      {{- /* Header with title and link to all tags */ -}}
+      <div class="is-flex is-justify-content-space-between is-align-items-center mb-4">
+        <h2 class="title is-5 has-text-primary-dark mb-0">
+          <span class="icon-text">
+            <span class="icon">
+              <i class="fa-solid fa-tags"></i>
+            </span>
+            <span>Häufige Tags</span>
+          </span>
+        </h2>
+        <a href="{{ "/tags/" | relLangURL }}" class="button is-small is-light">
+          <span class="icon">
+            <i class="fa-solid fa-grip"></i>
+          </span>
+          <span>Alle Tags</span>
+        </a>
+      </div>
+      
+      {{- /* List of 15 most frequent tags, sorted by count */ -}}
+      <div class="tags">
+        {{ range first 15 .Site.Taxonomies.tags.ByCount }}
+        <a href="{{ .Page.RelPermalink }}" class="tag is-medium post-tag">
+          <span class="icon">
+            <i class="fa-solid fa-tag"></i>
+          </span>
+          <span>{{ .Page.Title }}</span>
+          <span class="tag-count">({{ .Count }})</span>
+        </a>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+
+    {{- /* ===================================================================
+         LIST OF PAGES WITH PAGINATION
+         =================================================================== */ -}}
+    {{- /* Get all regular pages of this section */ -}}
+    {{ $pages := .RegularPages }}
+    {{- /* Pagination: Splits pages into multiple pages */ -}}
+    {{ $paginator := .Paginate $pages }}
+    
+    {{- /* Show each page as post card */ -}}
+    {{ range $paginator.Pages }}
+      {{ partial "post-card.html" . }}
+    {{ end }}
+
+    {{- /* Pagination navigation (if more than one page) */ -}}
+    {{ partial "pagination.html" $paginator }}
+  </div>
+</section>
+{{ end }}

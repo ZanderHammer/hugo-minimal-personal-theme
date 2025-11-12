@@ -1,0 +1,85 @@
+{{- /*
+=============================================================================
+TERM TEMPLATE (term.html)
+=============================================================================
+Template for individual taxonomy term pages (e.g. single tag like /tags/hugo/).
+Shows all posts with a specific tag.
+
+Usage:
+- Automatically used for individual tags (/tags/hugo/)
+- .Pages contains all pages with this tag
+- .Title is the tag name
+
+Structure:
+1. Tag title with icon and number of posts
+2. Link back to tag overview
+3. List of all posts with this tag (paginated)
+4. Pagination
+5. Back link to tag overview
+=============================================================================
+*/ -}}
+
+{{ define "main" }}
+<section class="section">
+  <div class="container is-max-desktop">
+    
+    {{- /* ===================================================================
+         TAG TITLE AND DESCRIPTION
+         =================================================================== */ -}}
+    <div class="mb-6">
+      {{- /* Tag name with icon */ -}}
+      <h1 class="title is-2 has-text-primary-dark">
+        <i class="fa-solid fa-tag mr-2"></i>{{ .Title }}
+      </h1>
+      
+      {{- /* Optional description text */ -}}
+      {{ if .Content }}
+      <div class="content">
+        {{ .Content }}
+      </div>
+      {{ end }}
+      
+      {{- /* Number of posts with this tag (singular/plural logic) */ -}}
+      <p class="subtitle is-5 has-text-grey">
+        {{ len .Pages }} {{ if eq (len .Pages) 1 }}Beitrag{{ else }}Beiträge{{ end }} mit diesem Tag
+      </p>
+      
+      {{- /* Link back to tag overview */ -}}
+      <div class="has-text-centered">
+        <a href="{{ "/tags/" | relLangURL }}" class="button is-light">
+          <span class="icon">
+            <i class="fa-solid fa-arrow-left"></i>
+          </span>
+          <span>Alle Tags anzeigen</span>
+        </a>
+      </div>
+    </div>
+
+    {{- /* ===================================================================
+         LIST OF POSTS WITH PAGINATION
+         =================================================================== */ -}}
+    {{- /* Pagination: Splits posts into multiple pages */ -}}
+    {{ $paginator := .Paginate .Pages }}
+    
+    {{- /* Show each post as card */ -}}
+    {{ range $paginator.Pages }}
+      {{ partial "post-card.html" . }}
+    {{ end }}
+
+    {{- /* Pagination navigation (if more than one page) */ -}}
+    {{ partial "pagination.html" $paginator }}
+
+    {{- /* ===================================================================
+         BACK NAVIGATION
+         =================================================================== */ -}}
+    <div class="mt-6 has-text-centered">
+      <a href="{{ "/tags/" | relLangURL }}" class="button is-light">
+        <span class="icon">
+          <i class="fa-solid fa-arrow-left"></i>
+        </span>
+        <span>Alle Tags anzeigen</span>
+      </a>
+    </div>
+  </div>
+</section>
+{{ end }}

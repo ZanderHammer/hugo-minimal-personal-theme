@@ -1,0 +1,41 @@
+{{- /*
+=============================================================================
+HEADER PARTIAL (header.html)
+=============================================================================
+Site-wide header with navigation and dark mode toggle.
+Included on every page via baseof.html.
+
+Components:
+1. Main navigation (from hugo.toml menu.main)
+2. Dark mode toggle button
+
+CSS classes:
+- site-header: Container for entire header
+- header-content: Flex container for navigation and toggle
+- dark-mode-toggle: Button for dark mode toggle
+
+JavaScript:
+- main.js contains the dark mode toggle logic
+=============================================================================
+*/ -}}
+
+<header class="site-header">
+  <div class="container">
+    <div class="header-content">
+      {{- /* ===================================================================
+           MAIN NAVIGATION
+           Loads menu with ID "main" from hugo.toml
+           =================================================================== */ -}}
+      {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+      
+      {{- /* ===================================================================
+           DARK MODE TOGGLE BUTTON
+           JavaScript in main.js handles click events and theme switching
+           Icon is changed dynamically by JS (moon/sun)
+           =================================================================== */ -}}
+      <button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Toggle Dark Mode">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
+  </div>
+</header>

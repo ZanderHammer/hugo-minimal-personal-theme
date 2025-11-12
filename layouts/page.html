@@ -1,0 +1,101 @@
+{{- /*
+=============================================================================
+PAGE TEMPLATE (page.html)
+=============================================================================
+Template for single pages and blog posts. Shows complete content with
+featured image, date, tags and navigation.
+
+Usage:
+- Used for single posts/pages
+- Supports front matter parameters:
+  - image: Featured image (optional, fallback: placeholder)
+  - date: Publication date
+  - tags: Array of tags
+
+Structure:
+1. Featured image (3:1 ratio)
+2. Page header (title, date, tags)
+3. Main content
+4. Back navigation
+=============================================================================
+*/ -}}
+
+{{ define "main" }}
+<section class="section">
+  <div class="container is-max-desktop">
+    <article class="content">
+      
+      {{- /* ===================================================================
+           FEATURED IMAGE
+           =================================================================== */ -}}
+      <figure class="image is-3by1 mb-5">
+        {{- /* Featured image from front matter or placeholder */ -}}
+        {{ if .Params.image }}
+        <img src="{{ .Params.image }}" alt="{{ .Title }}">
+        {{ else }}
+        {{- /* CSS class for styled placeholder */ -}}
+        <div class="post-image-placeholder"></div>
+        {{ end }}
+      </figure>
+
+      {{- /* ===================================================================
+           POST HEADER
+           =================================================================== */ -}}
+      <header class="mb-5">
+        {{- /* Page title */ -}}
+        <h1 class="title is-2 has-text-primary-dark">{{ .Title }}</h1>
+        
+        {{- /* Publication date with icon */ -}}
+        {{ if .Date }}
+        <p class="subtitle is-6 has-text-grey mb-4">
+          <span class="icon-text">
+            <span class="icon">
+              <i class="fa-solid fa-calendar-days"></i>
+            </span>
+            {{- /* Date in localized format with ISO datetime for SEO */ -}}
+            <time datetime="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}">
+              {{ .Date.Format "02.01.2006" }}
+            </time>
+          </span>
+        </p>
+        {{ end }}
+
+        {{- /* Tags list */ -}}
+        {{ if .Params.tags }}
+        <div class="tags">
+          {{ range .Params.tags }}
+          {{- /* Linked tags with URL-safe names (urlize) */ -}}
+          <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}/" class="tag is-light">
+            <span class="icon">
+              <i class="fa-solid fa-tag"></i>
+            </span>
+            <span>{{ . }}</span>
+          </a>
+          {{ end }}
+        </div>
+        {{ end }}
+      </header>
+
+      {{- /* ===================================================================
+           MAIN CONTENT
+           =================================================================== */ -}}
+      <div class="post-content">
+        {{- /* Markdown content is rendered as HTML here */ -}}
+        {{ .Content }}
+      </div>
+
+      {{- /* ===================================================================
+           NAVIGATION
+           =================================================================== */ -}}
+      <div class="mt-6 has-text-centered">
+        <a href="/posts/" class="button is-light">
+          <span class="icon">
+            <i class="fa-solid fa-arrow-left"></i>
+          </span>
+          <span>Zurück zu allen Posts</span>
+        </a>
+      </div>
+    </article>
+  </div>
+</section>
+{{ end }}

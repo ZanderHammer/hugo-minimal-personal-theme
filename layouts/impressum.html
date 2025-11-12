@@ -1,0 +1,37 @@
+{{- /*
+=============================================================================
+IMPRESSUM TEMPLATE (impressum.html)
+=============================================================================
+Special template for the impressum page. Shows legal information
+in a simple, minimal layout.
+
+Usage:
+- Used for content/impressum.md (via layout: impressum)
+- Shows only title and content without additional features
+
+Structure:
+1. Page header with title
+2. Page content (from Markdown)
+=============================================================================
+*/ -}}
+
+{{ define "main" }}
+<article class="impressum-page">
+  <div class="container">
+    {{- /* ===================================================================
+         PAGE HEADER
+         =================================================================== */ -}}
+    <header class="page-header">
+      <h1>{{ .Title }}</h1>
+    </header>
+    
+    {{- /* ===================================================================
+         PAGE CONTENT
+         =================================================================== */ -}}
+    <div class="page-content">
+      {{- /* Markdown content is rendered as HTML here */ -}}
+      {{ .Content }}
+    </div>
+  </div>
+</article>
+{{ end }}

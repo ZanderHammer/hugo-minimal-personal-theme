@@ -1,0 +1,93 @@
+{{- /*
+=============================================================================
+MENU PARTIAL (menu.html)
+=============================================================================
+Recursive menu component with support for nested menus.
+Renders menu entries from hugo.toml and marks active/ancestor pages.
+
+Usage:
+{{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+
+Parameters:
+@param {page} page - Current page (for active/ancestor check)
+@param {string} menuID - Menu ID from hugo.toml (e.g. "main")
+
+Features:
+1. Active page is marked with "active" class
+2. Parent of active page is marked with "ancestor" class
+3. Supports arbitrary nesting depth (recursive)
+4. Internationalization via T function
+
+Menu definition in hugo.toml:
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+=============================================================================
+*/ -}}
+
+{{- /* Get parameters from passed dict */ -}}
+{{- $page := .page }}
+{{- $menuID := .menuID }}
+
+{{- /* Get menu entries from site configuration */ -}}
+{{- with index site.Menus $menuID }}
+  <nav class="main-nav">
+    <ul class="nav-list">
+      {{- /* Call recursive walk function */ -}}
+      {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+    </ul>
+  </nav>
+{{- end }}
+
+{{- /*
+=============================================================================
+INLINE PARTIAL: menu/walk.html
+Recursive function to traverse menu hierarchy
+=============================================================================
+*/ -}}
+{{- define "_partials/inline/menu/walk.html" }}
+  {{- $page := .page }}
+  {{- range .menuEntries }}
+    {{- /* Base attributes for link */ -}}
+    {{- $attrs := dict "href" .URL }}
+    
+    {{- /* Check if this is the current page */ -}}
+    {{- if $page.IsMenuCurrent .Menu . }}
+      {{- /* Add "active" class and aria-current for accessibility */ -}}
+      {{- $attrs = merge $attrs (dict "class" "active" "aria-current" "page") }}
+    {{- /* Check if this is a parent of the current page */ -}}
+    {{- else if $page.HasMenuCurrent .Menu .}}
+      {{- /* Add "ancestor" class */ -}}
+      {{- $attrs = merge $attrs (dict "class" "ancestor" "aria-current" "true") }}
+    {{- end }}
+    
+    {{- /* Get menu name (with i18n support) */ -}}
+    {{- $name := .Name }}
+    {{- with .Identifier }}
+      {{- with T . }}
+        {{- $name = . }}
+      {{- end }}
+    {{- end }}
+    
+    {{- /* Render list item */ -}}
+    <li>
+      <a
+        {{- /* Generate HTML attributes from $attrs dict */ -}}
+        {{- range $k, $v := $attrs }}
+          {{- with $v }}
+            {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+          {{- end }}
+        {{- end -}}
+      >{{ $name }}</a>
+      
+      {{- /* Recursion: Render child menus if present */ -}}
+      {{- with .Children }}
+        <ul>
+          {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+        </ul>
+      {{- end }}
+    </li>
+  {{- end }}
+{{- end }}

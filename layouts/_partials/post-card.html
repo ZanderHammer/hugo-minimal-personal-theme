@@ -1,0 +1,92 @@
+{{- /*
+=============================================================================
+POST CARD PARTIAL (post-card.html)
+=============================================================================
+Reusable card component for blog posts and pages.
+Shows preview with image, title, date, summary and tags.
+
+Usage:
+{{ partial "post-card.html" . }}
+
+Context: Expects a Page variable with:
+- .Params.image (optional): Featured image URL
+- .LinkTitle: Page title
+- .Date (optional): Publication date
+- .Summary (optional): Summary
+- .Params.tags (optional): Array of tags
+- .RelPermalink: URL to page
+
+Layout:
+1. Featured image (3:1 ratio) or placeholder
+2. Card content (title, date, summary, tags)
+3. Card footer with "Read more" link
+=============================================================================
+*/ -}}
+
+<div class="card mb-4">
+  {{- /* ===================================================================
+       FEATURED IMAGE
+       =================================================================== */ -}}
+  <div class="card-image">
+    <figure class="image is-3by1">
+      <a href="{{ .RelPermalink }}">
+        {{- /* Image from front matter or styled placeholder */ -}}
+        {{ if .Params.image }}
+        <img src="{{ .Params.image }}" alt="{{ .LinkTitle }}">
+        {{ else }}
+        <div class="post-image-placeholder"></div>
+        {{ end }}
+      </a>
+    </figure>
+  </div>
+  
+  {{- /* ===================================================================
+       CARD CONTENT
+       =================================================================== */ -}}
+  <div class="card-content">
+    {{- /* Post title as link */ -}}
+    <p class="title is-5">
+      <a href="{{ .RelPermalink }}" class="has-text-primary-dark">{{ .LinkTitle }}</a>
+    </p>
+    
+    {{- /* Publication date (if present) */ -}}
+    {{ if .Date }}
+    <p class="subtitle is-6 has-text-grey">
+      {{- /* ISO format for search engines, localized format for display */ -}}
+      <time datetime="{{ .Date.Format "2006-01-02" }}">
+        {{ .Date.Format "02.01.2006" }}
+      </time>
+    </p>
+    {{ end }}
+    
+    {{- /* Zusammenfassung/Excerpt (falls vorhanden) */ -}}
+    {{ if .Summary }}
+    <div class="content">
+      {{ .Summary }}
+    </div>
+    {{ end }}
+    
+    {{- /* Tag-Liste */ -}}
+    {{ if .Params.tags }}
+    <div class="tags">
+      {{ range .Params.tags }}
+      <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}/" class="tag is-light">
+        <span class="icon">
+          <i class="fa-solid fa-tag"></i>
+        </span>
+        <span>{{ . }}</span>
+      </a>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+  
+  {{- /* ===================================================================
+       CARD FOOTER
+       =================================================================== */ -}}
+  <footer class="card-footer">
+    <a href="{{ .RelPermalink }}" class="card-footer-item has-text-medium-green">
+      Weiterlesen
+    </a>
+  </footer>
+</div>

@@ -1,0 +1,38 @@
+{{- /*
+=============================================================================
+FOOTER PARTIAL (footer.html)
+=============================================================================
+Site-wide footer with copyright notice and legal links.
+Included on every page via baseof.html.
+
+Contents:
+1. Copyright text with Hugo link
+2. Legal links (e.g. impressum)
+
+Customization:
+- Footer links can be extended in the structure
+- Additional links (privacy, etc.) can be added here
+=============================================================================
+*/ -}}
+
+<footer class="site-footer">
+  <div class="container">
+    {{- /* ===================================================================
+         COPYRIGHT NOTICE
+         Font Awesome heart icon for personal touch
+         =================================================================== */ -}}
+    <p>Erstellt mit <i class="fas fa-heart"></i> und <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a></p>
+    
+    {{- /* ===================================================================
+         LEGAL LINKS
+         Extensible with privacy, terms of use, etc.
+         =================================================================== */ -}}
+    <p class="footer-links">
+      <a href="/impressum/">Impressum</a>
+      {{- /* Add more links here, e.g.:
+      <span class="separator">•</span>
+      <a href="/datenschutz/">Datenschutz</a>
+      */ -}}
+    </p>
+  </div>
+</footer>

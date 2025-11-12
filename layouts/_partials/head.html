@@ -1,0 +1,53 @@
+{{- /*
+=============================================================================
+HEAD PARTIAL (head.html)
+=============================================================================
+HTML head section with meta tags, title and resources.
+Included in baseof.html.
+
+Contents:
+1. Charset and viewport (for responsive design)
+2. Dynamic page title (home vs. other pages)
+3. Dark mode script (load before CSS!)
+4. CSS resources
+
+Important:
+- Dark mode script MUST be loaded before CSS to prevent flash
+- Title logic: "Site Title" for home, "Page Title | Site Title" for others
+=============================================================================
+*/ -}}
+
+{{- /* ===================================================================
+     BASIC META TAGS
+     =================================================================== */ -}}
+<meta charset="utf-8">
+{{- /* Viewport for responsive design on mobile devices */ -}}
+<meta name="viewport" content="width=device-width">
+
+{{- /* ===================================================================
+     PAGE TITLE
+     Dynamic: Only site title on homepage,
+     "Page Title | Site Title" on other pages
+     =================================================================== */ -}}
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+
+{{- /* ===================================================================
+     DARK MODE SCRIPT
+     CRITICAL: Must be loaded BEFORE CSS!
+     Prevents Flash of Wrong Theme (FOUT)
+     Loads saved theme from localStorage or uses 'light' as fallback
+     =================================================================== */ -}}
+<!-- Dark Mode Script - Must load before CSS to prevent flash -->
+<script>
+  (function() {
+    const theme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+{{- /* ===================================================================
+     CSS RESOURCES
+     Loads Bulma, Font Awesome and custom styles
+     partialCached: Rendered only once and cached for better performance
+     =================================================================== */ -}}
+{{ partialCached "head/css.html" . }}
