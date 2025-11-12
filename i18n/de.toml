@@ -12,8 +12,8 @@
 #   * other = "..." (für plural und 0, z.B. "0 Tags", "2 Tags")
 #
 # VERWENDUNG IN TEMPLATES:
-# - {{ i18n "schluessel" }} - Standard-Übersetzung laden
-# - {{ i18n "schluessel" .Count }} - Mit Pluralisierung (nutzt one/other)
+# - {{ i18n "menu.home" }} - Standard-Übersetzung laden
+# - {{ i18n "post" .Count }} - Mit Pluralisierung (nutzt one/other)
 # - {{ .Site.Params.author }} - Für benutzerdefinierte Parameter
 #
 # BEISPIELE FÜR NEUE EINTRÄGE:
