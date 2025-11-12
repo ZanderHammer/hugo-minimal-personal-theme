@@ -44,6 +44,15 @@ Example in hugo.toml:
 {{- $showSocialIcons := $footerConfig.showSocialIcons | default true }}
 {{- $showHugoCredit := $footerConfig.showHugoCredit | default false }}
 
+{{- /* ===================================================================
+     FOOTER VISIBILITY LOGIC
+     Only render footer if at least one content section is enabled
+     =================================================================== */ -}}
+{{- $hasSocialIcons := and $showSocialIcons site.Params.social }}
+{{- $hasFooterMenu := and $showFooterMenu site.Menus.footer }}
+{{- $hasVisibleContent := or $hasSocialIcons $showHugoCredit $showCopyright $hasFooterMenu }}
+
+{{- if $hasVisibleContent }}
 <footer class="site-footer">
   <div class="container">
     
@@ -125,3 +134,4 @@ Example in hugo.toml:
     
   </div>
 </footer>
+{{- end }}
