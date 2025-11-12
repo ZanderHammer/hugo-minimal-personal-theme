@@ -35,7 +35,7 @@ Structure:
         {{ if .Params.image_desktop }}
           {{ $resource := .Resources.GetMatch .Params.image_desktop }}
           {{ if $resource }}
-            {{ $desktopImg = $resource.RelPermalink }}
+            {{ $desktopImg = $resource.Permalink }}
           {{ else }}
             {{ $desktopImg = .Params.image_desktop }}
           {{ end }}
@@ -56,7 +56,7 @@ Structure:
         {{ if .Params.image_mobile }}
           {{ $resource := .Resources.GetMatch .Params.image_mobile }}
           {{ if $resource }}
-            {{ $mobileImg = $resource.RelPermalink }}
+            {{ $mobileImg = $resource.Permalink }}
           {{ else }}
             {{ $mobileImg = .Params.image_mobile }}
           {{ end }}
