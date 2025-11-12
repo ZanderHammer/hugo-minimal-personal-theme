@@ -29,11 +29,44 @@ Layout:
        FEATURED IMAGE
        =================================================================== */ -}}
   <div class="card-image">
-    <figure class="image is-3by1">
+    {{- /* Desktop/Tablet Image (3:1 ratio) */ -}}
+    <figure class="image is-3by1 post-image-desktop">
       <a href="{{ .RelPermalink }}">
-        {{- /* Image from front matter or styled placeholder */ -}}
-        {{ if .Params.image }}
-        <img src="{{ .Params.image }}" alt="{{ .LinkTitle }}">
+        {{- /* Use image_desktop or show placeholder */ -}}
+        {{ $desktopImg := "" }}
+        {{ if .Params.image_desktop }}
+          {{ $resource := .Resources.GetMatch .Params.image_desktop }}
+          {{ if $resource }}
+            {{ $desktopImg = $resource.Permalink }}
+          {{ else }}
+            {{ $desktopImg = .Params.image_desktop }}
+          {{ end }}
+        {{ end }}
+        
+        {{ if $desktopImg }}
+        <img src="{{ $desktopImg }}" alt="{{ .LinkTitle }}">
+        {{ else }}
+        <div class="post-image-placeholder"></div>
+        {{ end }}
+      </a>
+    </figure>
+    
+    {{- /* Mobile Image (5:4 ratio) */ -}}
+    <figure class="image is-5by4 post-image-mobile">
+      <a href="{{ .RelPermalink }}">
+        {{- /* Use image_mobile or show placeholder */ -}}
+        {{ $mobileImg := "" }}
+        {{ if .Params.image_mobile }}
+          {{ $resource := .Resources.GetMatch .Params.image_mobile }}
+          {{ if $resource }}
+            {{ $mobileImg = $resource.Permalink }}
+          {{ else }}
+            {{ $mobileImg = .Params.image_mobile }}
+          {{ end }}
+        {{ end }}
+        
+        {{ if $mobileImg }}
+        <img src="{{ $mobileImg }}" alt="{{ .LinkTitle }}">
         {{ else }}
         <div class="post-image-placeholder"></div>
         {{ end }}

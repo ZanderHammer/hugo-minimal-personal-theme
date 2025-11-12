@@ -4,6 +4,12 @@ date: 2024-01-15T10:00:00+01:00
 draft: false
 description: "A comprehensive demonstration of Markdown formatting capabilities in Hugo"
 summary: "Complete guide to Markdown in Hugo: text formatting, lists, tables, code blocks, footnotes, and more."
+
+# Preview Images (responsive)
+image_desktop: "/img/portrait.png"  # 3:1 ratio for desktop/tablet
+image_mobile: "/img/portrait.png"   # 5:4 ratio for mobile
+image: "/img/portrait.png"          # Fallback
+
 tags: ["markdown", "demo", "formatting"]
 categories: ["documentation"]
 author: "Hugo Demo"

@@ -340,6 +340,22 @@ body {
   transform: scale(1.05);
 }
 
+/* Responsive Post Card Images */
+.post-image-desktop {
+  display: block;
+}
+
+.post-image-mobile {
+  display: none;
+}
+
+.post-image-desktop img,
+.post-image-mobile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .post-image-placeholder {
   width: 100%;
   height: 100%;
@@ -530,6 +546,17 @@ a.has-text-medium-green:hover {
 /* ===================================
    Responsive Design
    =================================== */
+@media (max-width: 768px) {
+  /* Switch to mobile image variant */
+  .post-image-desktop {
+    display: none;
+  }
+  
+  .post-image-mobile {
+    display: block;
+  }
+}
+
 @media (max-width: 768px) {
   .nav-list {
     gap: 1rem;
