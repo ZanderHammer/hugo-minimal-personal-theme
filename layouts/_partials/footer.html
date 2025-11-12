@@ -112,13 +112,10 @@ Example in hugo.toml:
       <ul class="footer-menu-list">
         {{- range sort site.Menus.footer "Weight" }}
         <li>
-          {{- $name := .Name }}
-          {{- if not $name }}
-            {{- $name = i18n (printf "footer.menu.%s" .Identifier) }}
-          {{- end }}
-          {{- if not $name }}
-            {{- $name = .Identifier | humanize }}
-          {{- end }}
+          {{- $menuName := .Name }}
+          {{- $translatedName := i18n (printf "footer.menu.%s" .Identifier) }}
+          {{- $fallbackName := .Identifier | humanize }}
+          {{- $name := cond (ne $menuName "") $menuName (cond (ne $translatedName "") $translatedName $fallbackName) }}
           <a href="{{ .URL | relLangURL }}">{{ $name }}</a>
         </li>
         {{- end }}
