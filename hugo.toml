@@ -1,9 +1,30 @@
 baseURL = 'https://example.org/'
-languageCode = 'en'
-title = 'My New Hugo Site'
 version = '0.0.1'
 
-DefaultContentLanguage = "en"
+# Multilingual Configuration
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+
+[languages]
+  [languages.en]
+    languageCode = "en"
+    languageName = "English"
+    title = "My Hugo Site"
+    weight = 1
+    
+    [languages.en.permalinks]
+      posts = "/posts/:slug/"
+      tools = "/tools/:slug/"
+
+  [languages.de]
+    languageCode = "de"
+    languageName = "Deutsch"
+    title = "Meine Hugo Seite"
+    weight = 2
+    
+    [languages.de.permalinks]
+      posts = "/beitraege/:slug/"
+      tools = "/werkzeuge/:slug/"
 
 [pagination]
   pagerSize = 10
@@ -41,6 +62,31 @@ DefaultContentLanguage = "en"
 
   [[menus.main]]
     identifier = 'tags'
+    pageRef = '/tags'
+    weight = 40
+
+[languages.de.menus]
+  [[languages.de.menus.main]]
+    identifier = 'home'
+    name = 'Start'
+    pageRef = '/'
+    weight = 10
+
+  [[languages.de.menus.main]]
+    identifier = 'posts'
+    name = 'Beiträge'
+    pageRef = '/beitraege'
+    weight = 20
+
+  [[languages.de.menus.main]]
+    identifier = 'tools'
+    name = 'Werkzeuge'
+    pageRef = '/werkzeuge'
+    weight = 30
+
+  [[languages.de.menus.main]]
+    identifier = 'tags'
+    name = 'Schlagwörter'
     pageRef = '/tags'
     weight = 40
 

@@ -1,6 +1,36 @@
 # =============================================================================
 # ENGLISH TRANSLATIONS
 # =============================================================================
+#
+# GUIDE: This file contains all English translations for the theme.
+# 
+# FORMAT:
+# - Each translation key is formatted as [name] with one or more lines
+# - "other = ..." is the default value and is always used
+# - For pluralizable text, you can additionally define:
+#   * one = "..." (for singular, e.g., "1 tag")
+#   * other = "..." (for plural and 0, e.g., "0 tags", "2 tags")
+#
+# USAGE IN TEMPLATES:
+# - {{ i18n "key" }} - Load standard translation
+# - {{ i18n "key" .Count }} - With pluralization (uses one/other)
+# - {{ .Site.Params.author }} - For custom parameters
+#
+# EXAMPLES FOR NEW ENTRIES:
+# 
+#   [example]
+#   other = "Example text"
+#
+#   [example_plural]
+#   one = "1 item"
+#   other = "{{ .Count }} items"
+#
+# IMPORTANT:
+# - All key names should be descriptive and lowercase
+# - Avoid special characters and spaces in key names
+# - Keep the structure organized by sections
+# - Update the de.toml file simultaneously for German translations
+# =============================================================================
 
 # -----------------------------------------------------------------------------
 # MENU / NAVIGATION

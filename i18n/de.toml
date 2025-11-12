@@ -1,6 +1,36 @@
 # =============================================================================
 # DEUTSCHE ÜBERSETZUNGEN
 # =============================================================================
+#
+# ANLEITUNG: Diese Datei enthält alle deutschen Übersetzungen für das Theme.
+# 
+# FORMAT:
+# - Jeder Übersetzungsschlüssel hat die Form [name] mit einer oder mehr Zeilen
+# - "other = ..." ist der Standard-Wert und wird immer verwendet
+# - Für pluralisierbare Texte können zusätzlich definiert werden:
+#   * one = "..." (für singular, z.B. "1 Tag")
+#   * other = "..." (für plural und 0, z.B. "0 Tags", "2 Tags")
+#
+# VERWENDUNG IN TEMPLATES:
+# - {{ i18n "menu.home" }} - Standard-Übersetzung laden
+# - {{ i18n "post" .Count }} - Mit Pluralisierung (nutzt one/other)
+# - {{ .Site.Params.author }} - Für benutzerdefinierte Parameter
+#
+# BEISPIELE FÜR NEUE EINTRÄGE:
+# 
+#   [example]
+#   other = "Beispieltext"
+#
+#   [example_plural]
+#   one = "1 Element"
+#   other = "{{ .Count }} Elemente"
+#
+# WICHTIG:
+# - Alle Schlüsselnamen sollten sprechend und klein geschrieben sein
+# - Vermeide Sonderzeichen und Leerzeichen in Schlüsselnamen
+# - Behalte die Struktur nach Sektionen bei
+# - Aktualisiere gleichzeitig die en.toml Datei für englische Übersetzungen
+# =============================================================================
 
 # -----------------------------------------------------------------------------
 # MENÜ / NAVIGATION
