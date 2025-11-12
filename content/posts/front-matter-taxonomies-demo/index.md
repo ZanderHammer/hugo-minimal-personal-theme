@@ -8,7 +8,7 @@ summary: "Learn how to use front matter variables, custom parameters, taxonomies
 
 # Preview Images (responsive)
 image_desktop: "fm_3-1.webp"        # 3:1 ratio for desktop/tablet
-image_mobile: "/img/portrait.png"   # 5:4 ratio for mobile
+image_mobile: "fm_5-4.webp"   # 5:4 ratio for mobile
 image: "fm_3-1.webp"                # Fallback
 
 # Taxonomies
