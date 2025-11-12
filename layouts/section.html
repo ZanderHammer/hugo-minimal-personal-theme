@@ -80,8 +80,8 @@ Structure:
     {{- /* ===================================================================
          LIST OF PAGES WITH PAGINATION
          =================================================================== */ -}}
-    {{- /* Get all regular pages of this section */ -}}
-    {{ $pages := .RegularPages }}
+    {{- /* Get all regular pages of this section (including from theme content) */ -}}
+    {{ $pages := where .Site.RegularPages "Section" "==" .Section }}
     {{- /* Pagination: Splits pages into multiple pages */ -}}
     {{ $paginator := .Paginate $pages }}
     

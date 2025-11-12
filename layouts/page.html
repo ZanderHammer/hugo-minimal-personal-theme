@@ -30,7 +30,7 @@ Structure:
            =================================================================== */ -}}
       {{- /* Desktop/Tablet Image (3:1 ratio) */ -}}
       <figure class="image is-3by1 mb-5 post-image-desktop">
-        {{- /* Use image_desktop if available, fallback to image, or show placeholder */ -}}
+        {{- /* Use image_desktop or show placeholder */ -}}
         {{ $desktopImg := "" }}
         {{ if .Params.image_desktop }}
           {{ $resource := .Resources.GetMatch .Params.image_desktop }}
@@ -38,13 +38,6 @@ Structure:
             {{ $desktopImg = $resource.RelPermalink }}
           {{ else }}
             {{ $desktopImg = .Params.image_desktop }}
-          {{ end }}
-        {{ else if .Params.image }}
-          {{ $resource := .Resources.GetMatch .Params.image }}
-          {{ if $resource }}
-            {{ $desktopImg = $resource.RelPermalink }}
-          {{ else }}
-            {{ $desktopImg = .Params.image }}
           {{ end }}
         {{ end }}
         
@@ -58,7 +51,7 @@ Structure:
       
       {{- /* Mobile Image (5:4 ratio) */ -}}
       <figure class="image is-5by4 mb-5 post-image-mobile">
-        {{- /* Use image_mobile if available, fallback to image, or show placeholder */ -}}
+        {{- /* Use image_mobile or show placeholder */ -}}
         {{ $mobileImg := "" }}
         {{ if .Params.image_mobile }}
           {{ $resource := .Resources.GetMatch .Params.image_mobile }}
@@ -66,13 +59,6 @@ Structure:
             {{ $mobileImg = $resource.RelPermalink }}
           {{ else }}
             {{ $mobileImg = .Params.image_mobile }}
-          {{ end }}
-        {{ else if .Params.image }}
-          {{ $resource := .Resources.GetMatch .Params.image }}
-          {{ if $resource }}
-            {{ $mobileImg = $resource.RelPermalink }}
-          {{ else }}
-            {{ $mobileImg = .Params.image }}
           {{ end }}
         {{ end }}
         

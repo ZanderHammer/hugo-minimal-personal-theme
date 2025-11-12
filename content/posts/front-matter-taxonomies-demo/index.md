@@ -1,7 +1,6 @@
 ---
 title: "Front Matter and Taxonomies Demo"
-date: 2024-02-10T14:30:00+01:00
-lastmod: 2024-02-15T09:20:00+01:00
+date: 2025-10-10T18:20:00+01:00
 draft: false
 description: "Demonstrating Hugo's powerful front matter features and taxonomy system"
 summary: "Learn how to use front matter variables, custom parameters, taxonomies, and metadata in Hugo"
