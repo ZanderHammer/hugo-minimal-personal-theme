@@ -4,7 +4,17 @@ A clean, minimalistic Hugo theme designed for personal websites and blogs.
 
 ## Features
 
-TBW
+- Clean, minimalistic design optimized for personal websites and blogs
+- Dark mode support with automatic theme switching
+- Responsive layout that works on desktop and mobile devices
+- Multilingual support (i18n) with English and German translations
+- Customizable color palette via configuration
+- **Fully customizable footer** with copyright text, custom links, and social media icons
+- Built with Bulma 1.0.4 CSS framework
+- Font Awesome 7 icons included
+- SEO-friendly structure
+- Fast loading times
+
 ## Installation
 
 ### As a Git Submodule
@@ -35,6 +45,232 @@ The theme uses the following color scheme:
 - **Light Green**: `#a7c957`
 - **Cream/Beige**: `#f2e8cf`
 - **Red Accent**: `#bc4749`
+
+## Configuration
+
+### Customizing Colors
+
+You can override the default colors in your `hugo.toml`:
+
+```toml
+[params.colors]
+  primary = "#386641"
+  secondary = "#6a994e"
+  accent = "#a7c957"
+  background = "#f2e8cf"
+  highlight = "#bc4749"
+  
+  [params.colors.dark]
+    primary = "#7fc97f"
+    secondary = "#9ed98e"
+    accent = "#c5e8a1"
+```
+
+### Customizing the Footer
+
+The theme provides extensive footer customization options. All footer features can be enabled/disabled and styled via configuration.
+
+#### Basic Footer Configuration
+
+Add this to your `hugo.toml`:
+
+```toml
+[params.footer]
+  # Enable/disable footer sections
+  showCopyright = true
+  showFooterMenu = true
+  showSocialIcons = true
+  
+  # Copyright text with placeholders
+  # {year} = current year
+  # {site} = site title from hugo.toml
+  copyrightText = "© {year} {site}. All rights reserved."
+```
+
+**Copyright Text Examples:**
+
+```toml
+# Simple copyright
+copyrightText = "© {year} {site}"
+
+# With custom message
+copyrightText = "© {year} {site}. Made with ❤️"
+
+# Without site name
+copyrightText = "© {year} John Doe. All rights reserved."
+
+# Leave empty to show default "Created with ❤️ and Hugo"
+copyrightText = ""
+```
+
+#### Footer Menu Links
+
+Add custom links to your footer using the same i18n pattern as the main menu:
+
+```toml
+# Add footer menu items
+[[menus.footer]]
+  identifier = 'imprint'
+  pageRef = '/impressum'
+  weight = 10
+
+[[menus.footer]]
+  identifier = 'privacy'
+  pageRef = '/privacy'
+  weight = 20
+
+[[menus.footer]]
+  identifier = 'terms'
+  pageRef = '/terms'
+  weight = 30
+```
+
+**Multilingual Footer Menu:**
+
+For German translations, add to your `hugo.toml`:
+
+```toml
+[languages.de.menus]
+  [[languages.de.menus.footer]]
+    identifier = 'imprint'
+    name = 'Impressum'
+    pageRef = '/impressum'
+    weight = 10
+    
+  [[languages.de.menus.footer]]
+    identifier = 'privacy'
+    name = 'Datenschutz'
+    pageRef = '/datenschutz'
+    weight = 20
+```
+
+The theme automatically looks up translations using the identifier. You can add translations in `i18n/en.toml` and `i18n/de.toml`:
+
+```toml
+# i18n/en.toml
+[footer.menu.imprint]
+other = "Imprint"
+
+[footer.menu.privacy]
+other = "Privacy"
+
+# i18n/de.toml
+[footer.menu.imprint]
+other = "Impressum"
+
+[footer.menu.privacy]
+other = "Datenschutz"
+```
+
+#### Social Media Icons
+
+Add social media links with Font Awesome icons:
+
+```toml
+[[params.social]]
+  name = "GitHub"
+  icon = "fab fa-github"
+  url = "https://github.com/yourusername"
+  weight = 10
+
+[[params.social]]
+  name = "Twitter"
+  icon = "fab fa-twitter"
+  url = "https://twitter.com/yourusername"
+  weight = 20
+
+[[params.social]]
+  name = "LinkedIn"
+  icon = "fab fa-linkedin"
+  url = "https://linkedin.com/in/yourusername"
+  weight = 30
+
+[[params.social]]
+  name = "Email"
+  icon = "fas fa-envelope"
+  url = "mailto:your@email.com"
+  weight = 40
+```
+
+**Supported Icons:**
+
+You can use any Font Awesome 7 Free icon. Common examples:
+- `fab fa-github` - GitHub
+- `fab fa-twitter` - Twitter / X
+- `fab fa-linkedin` - LinkedIn
+- `fab fa-mastodon` - Mastodon
+- `fab fa-youtube` - YouTube
+- `fab fa-instagram` - Instagram
+- `fas fa-envelope` - Email
+- `fas fa-rss` - RSS Feed
+
+#### Custom Footer Styling
+
+Override footer fonts and colors:
+
+```toml
+[params.footer.style]
+  # Custom font family (leave empty for theme default)
+  fontFamily = "'Roboto', sans-serif"
+  
+  # Light mode colors
+  backgroundColor = "#f5f5f5"
+  textColor = "#333333"
+  
+  # Dark mode colors
+  darkBackgroundColor = "#1a1a1a"
+  darkTextColor = "#e0e0e0"
+```
+
+**Complete Footer Example:**
+
+```toml
+[params.footer]
+  showCopyright = true
+  showFooterMenu = true
+  showSocialIcons = true
+  copyrightText = "© {year} {site}. Built with Hugo."
+  
+  [params.footer.style]
+    fontFamily = "'Inter', -apple-system, sans-serif"
+    backgroundColor = "#f8f9fa"
+    textColor = "#495057"
+    darkBackgroundColor = "#212529"
+    darkTextColor = "#dee2e6"
+
+[[params.social]]
+  name = "GitHub"
+  icon = "fab fa-github"
+  url = "https://github.com/yourusername"
+  weight = 10
+
+[[params.social]]
+  name = "Email"
+  icon = "fas fa-envelope"
+  url = "mailto:contact@example.com"
+  weight = 20
+
+[[menus.footer]]
+  identifier = 'imprint'
+  pageRef = '/impressum'
+  weight = 10
+
+[[menus.footer]]
+  identifier = 'privacy'
+  pageRef = '/privacy'
+  weight = 20
+```
+
+### Disabling Footer Sections
+
+You can selectively disable footer sections:
+
+```toml
+[params.footer]
+  showCopyright = true       # Show copyright text
+  showFooterMenu = false     # Hide footer menu
+  showSocialIcons = false    # Hide social icons
+```
 
 ## Dependencies
 
