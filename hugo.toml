@@ -6,6 +6,21 @@ version = '0.0.1'
 [pagination]
   pagerSize = 10
 
+[params]
+  [params.colors]
+    # Light Mode Colors
+    primary = "#386641"
+    secondary = "#6a994e"
+    accent = "#a7c957"
+    background = "#f2e8cf"
+    highlight = "#bc4749"
+    
+    # Dark Mode Color Overrides
+    [params.colors.dark]
+      primary = "#7fc97f"
+      secondary = "#9ed98e"
+      accent = "#c5e8a1"
+
 [menus]
   [[menus.main]]
     name = 'Home'

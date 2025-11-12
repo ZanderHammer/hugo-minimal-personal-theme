@@ -1,0 +1,47 @@
+{{- /*
+=============================================================================
+DYNAMIC COLOR VARIABLES (head/colors.gohtml)
+=============================================================================
+Injects CSS custom properties (variables) from hugo.toml configuration.
+This allows theme colors to be customized without editing CSS files.
+
+Configuration in hugo.toml:
+[params.colors]
+  primary = "#386641"
+  secondary = "#6a994e"
+  accent = "#a7c957"
+  background = "#f2e8cf"
+  highlight = "#bc4749"
+  
+  [params.colors.dark]
+    primary = "#7fc97f"
+    secondary = "#9ed98e"
+    accent = "#c5e8a1"
+
+Usage:
+{{ partial "head/colors.gohtml" . }}
+=============================================================================
+*/ -}}
+
+<!-- css-validator-disable -->
+<style>
+:root {
+  {{- with site.Params.colors }}
+  /* Brand Colors from hugo.toml */
+  --primary-dark-green: {{ .primary | default "#386641" }};
+  --medium-green: {{ .secondary | default "#6a994e" }};
+  --light-green: {{ .accent | default "#a7c957" }};
+  --cream-beige: {{ .background | default "#f2e8cf" }};
+  --red-accent: {{ .highlight | default "#bc4749" }};
+  {{- end }}
+}
+
+[data-theme="dark"] {
+  {{- with site.Params.colors.dark }}
+  /* Dark Mode Color Overrides from hugo.toml */
+  --primary-dark-green: {{ .primary | default "#7fc97f" }};
+  --medium-green: {{ .secondary | default "#9ed98e" }};
+  --light-green: {{ .accent | default "#c5e8a1" }};
+  {{- end }}
+}
+</style>

@@ -46,6 +46,13 @@ Important:
 </script>
 
 {{- /* ===================================================================
+     DYNAMIC COLOR VARIABLES
+     Loads color configuration from hugo.toml as CSS custom properties
+     Must be loaded BEFORE other CSS files
+     =================================================================== */ -}}
+{{ partial "head/colors.gohtml" . }}
+
+{{- /* ===================================================================
      CSS RESOURCES
      Loads Bulma, Font Awesome and custom styles
      partialCached: Rendered only once and cached for better performance
