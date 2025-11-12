@@ -18,6 +18,11 @@ Configuration:
 - Add social icons using [[params.social]]
 - Full i18n support using identifier-based translations
 
+Backward Compatibility:
+- When copyrightText is not set, displays "Created with ❤️ and Hugo" in
+  original format (plain <p> tag) to maintain HTML structure compatibility
+- When copyrightText is set, uses <p class="footer-copyright"> wrapper
+
 Example in hugo.toml:
 [params.footer]
   showCopyright = true
@@ -82,22 +87,23 @@ Example in hugo.toml:
     {{- /* ===================================================================
          COPYRIGHT NOTICE
          Customizable text with {year} and {site} placeholders
-         Font Awesome heart icon for personal touch
+         When copyrightText is not set, shows Hugo credit in original format
+         to maintain backward compatibility
          =================================================================== */ -}}
     {{- if $showCopyright }}
-    <p class="footer-copyright">
       {{- $copyrightText := $footerConfig.copyrightText | default "" }}
       {{- if $copyrightText }}
+    <p class="footer-copyright">
         {{- $year := now.Year }}
         {{- $siteName := site.Title }}
         {{- $text := replace $copyrightText "{year}" (string $year) }}
         {{- $text = replace $text "{site}" $siteName }}
         {{ $text | safeHTML }}
-      {{- else }}
-        {{- /* Default fallback */ -}}
-        {{ i18n "createdWith" }} <i class="fas fa-heart"></i> {{ i18n "and" }} <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a>
-      {{- end }}
     </p>
+      {{- else }}
+        {{- /* Default: Show Hugo credit in original format for backward compatibility */ -}}
+    <p>{{ i18n "createdWith" }} <i class="fas fa-heart"></i> {{ i18n "and" }} <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a></p>
+      {{- end }}
     {{- end }}
     
 

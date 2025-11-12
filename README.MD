@@ -99,8 +99,9 @@ copyrightText = "© {year} {site}. Made with ❤️"
 # Without site name
 copyrightText = "© {year} John Doe. All rights reserved."
 
-# Leave empty to show default "Created with ❤️ and Hugo"
-copyrightText = ""
+# Omit copyrightText to show default "Created with ❤️ and Hugo"
+# (maintains original footer HTML structure for backward compatibility)
+# copyrightText = ""
 ```
 
 #### Footer Menu Links
