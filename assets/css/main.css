@@ -205,12 +205,12 @@ body {
 .footer-social-icons a:hover {
   opacity: 1;
   color: var(--primary-dark-green);
-  background-color: rgba(56, 102, 65, 0.1);
+  background-color: rgba(var(--primary-dark-green-rgb), 0.1);
   transform: translateY(-2px);
 }
 
 [data-theme="dark"] .footer-social-icons a:hover {
-  background-color: rgba(127, 201, 127, 0.15);
+  background-color: rgba(var(--primary-dark-green-rgb), 0.15);
 }
 
 /* Footer Copyright */
