@@ -205,12 +205,8 @@ body {
 .footer-social-icons a:hover {
   opacity: 1;
   color: var(--primary-dark-green);
-  background-color: rgba(56, 102, 65, 0.1);
+  background-color: var(--hover-bg-medium);
   transform: translateY(-2px);
-}
-
-[data-theme="dark"] .footer-social-icons a:hover {
-  background-color: rgba(127, 201, 127, 0.15);
 }
 
 /* Footer Copyright */
@@ -311,11 +307,7 @@ body {
 .footer-menu-list a:hover {
   opacity: 1;
   color: var(--primary-dark-green);
-  background-color: rgba(56, 102, 65, 0.05);
-}
-
-[data-theme="dark"] .footer-menu-list a:hover {
-  background-color: rgba(127, 201, 127, 0.1);
+  background-color: var(--hover-bg-light);
 }
 
 /* Legacy support for old footer structure */

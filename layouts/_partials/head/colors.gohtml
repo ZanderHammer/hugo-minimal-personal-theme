@@ -40,6 +40,10 @@ Usage:
   --light-green: {{ .accent | default "#a7c957" }};
   --cream-beige: {{ .background | default "#f2e8cf" }};
   --red-accent: {{ .highlight | default "#bc4749" }};
+  
+  /* Derived colors with transparency for hover effects */
+  --hover-bg-light: color-mix(in srgb, {{ .primary | default "#386641" }} 5%, transparent);
+  --hover-bg-medium: color-mix(in srgb, {{ .primary | default "#386641" }} 10%, transparent);
   {{- end }}
   
   {{- with site.Params.footer.style }}
@@ -62,6 +66,10 @@ Usage:
   --primary-dark-green: {{ .primary | default "#7fc97f" }};
   --medium-green: {{ .secondary | default "#9ed98e" }};
   --light-green: {{ .accent | default "#c5e8a1" }};
+  
+  /* Derived colors with transparency for dark mode hover effects */
+  --hover-bg-light: color-mix(in srgb, {{ .primary | default "#7fc97f" }} 10%, transparent);
+  --hover-bg-medium: color-mix(in srgb, {{ .primary | default "#7fc97f" }} 15%, transparent);
   {{- end }}
   
   {{- with site.Params.footer.style }}
