@@ -75,7 +75,7 @@ defaultContentLanguageInSubdir = false
   [[languages.de.menus.main]]
     identifier = 'posts'
     name = 'Beiträge'
-    pageRef = '/posts'
+    pageRef = '/beitraege'
     weight = 20
 
   [[languages.de.menus.main]]
