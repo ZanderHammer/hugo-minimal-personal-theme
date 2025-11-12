@@ -3,16 +3,16 @@ title: "Syntax Highlighting Showcase"
 date: 2024-05-12T09:30:00+01:00
 draft: false
 description: "A comprehensive showcase of syntax highlighting for multiple programming languages in Hugo"
+summary: "Showcase of Hugo/Chroma syntax highlighting across many languages with configurable styles, line numbers, and line highlighting."
 tags: ["syntax-highlighting", "code", "programming", "chroma"]
 categories: ["documentation", "development"]
 author: "Hugo Demo"
+
 ---
 
 ## Introduction
 
 Hugo uses [Chroma](https://github.com/alecthomas/chroma) for syntax highlighting, supporting over 200 programming languages. This post demonstrates syntax highlighting across various languages including JavaScript, Python, Go, Rust, SQL, and many more. See beautiful code examples with line numbers and highlighted lines.
-
-<!--more-->
 
 ## Configuration
 
@@ -142,8 +142,6 @@ class BlogPost {
             },
             body: JSON.stringify(this)
         })
-        .then(response => response.json())
-        .catch(error => console.error('Error:', error));
     }
 }
 

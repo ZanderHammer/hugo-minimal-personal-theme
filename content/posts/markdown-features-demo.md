@@ -3,6 +3,7 @@ title: "Markdown Features Demo"
 date: 2024-01-15T10:00:00+01:00
 draft: false
 description: "A comprehensive demonstration of Markdown formatting capabilities in Hugo"
+summary: "Complete guide to Markdown in Hugo: text formatting, lists, tables, code blocks, footnotes, and more."
 tags: ["markdown", "demo", "formatting"]
 categories: ["documentation"]
 author: "Hugo Demo"
@@ -11,8 +12,6 @@ author: "Hugo Demo"
 # Heading Level 1
 
 This post demonstrates various Markdown features supported by Hugo. From basic text formatting to complex tables and code blocks, you'll see everything Markdown has to offer in Hugo.
-
-<!--more-->
 
 ## Heading Level 2
 
@@ -169,14 +168,6 @@ Hugo allows you to mix HTML with Markdown:
 <div style="background-color: #f2e8cf; padding: 1rem; border-radius: 4px; border-left: 4px solid #386641;">
     <strong>Note:</strong> This is a custom styled box using HTML.
 </div>
-
----
-
-## Summary Divider
-
-<!--more-->
-
-Everything above this comment appears in the summary. Everything below is only visible on the full post page.
 
 ---
 

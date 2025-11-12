@@ -3,6 +3,7 @@ title: "Hugo Shortcodes Showcase"
 date: 2024-03-05T16:45:00+01:00
 draft: false
 description: "A comprehensive guide to Hugo's built-in shortcodes and how to use them"
+summary: "Master Hugo shortcodes: embed videos, images, code, and social media without writing HTML."
 tags: ["shortcodes", "hugo", "features"]
 categories: ["documentation"]
 author: "Hugo Demo"
@@ -11,8 +12,6 @@ author: "Hugo Demo"
 ## Introduction
 
 Shortcodes are simple snippets inside your content files that Hugo will render using predefined templates. They make it easy to add complex elements without writing HTML. Discover how to embed videos, images, code snippets, and social media content effortlessly.
-
-<!--more-->
 
 ## Built-in Shortcodes
 

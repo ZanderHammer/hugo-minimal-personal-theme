@@ -65,8 +65,6 @@ TocOpen: false
 
 This post demonstrates Hugo's powerful front matter capabilities and taxonomy system. Front matter is the metadata section at the top of your content files. Learn how to use tags, categories, custom parameters, SEO metadata, and much more to organize and optimize your content.
 
-<!--more-->
-
 ## Front Matter Formats
 
 Hugo supports three front matter formats:
