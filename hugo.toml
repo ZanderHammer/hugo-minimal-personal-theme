@@ -44,6 +44,51 @@ defaultContentLanguageInSubdir = false
       secondary = "#9ed98e"
       accent = "#c5e8a1"
 
+  # Footer Configuration
+  [params.footer]
+    # Enable/disable footer sections
+    showCopyright = true       # Display copyright text
+    showFooterMenu = true      # Display footer menu links
+    showSocialIcons = false     # Display social media icons
+    showHugoCredit = true     # Display "Created with ❤️ and Hugo" message
+    
+    # Copyright text configuration
+    # Use {year} placeholder for current year
+    # Use {site} placeholder for site title
+    copyrightText = "© {year} {site}. All rights reserved."
+    
+    # Custom footer styling
+    [params.footer.style]
+      # Font family for footer text (leave empty to use theme default)
+      fontFamily = ""
+      # Background color override (leave empty to use default)
+      backgroundColor = ""
+      # Text color override (leave empty to use default)
+      textColor = ""
+      # Dark mode background color override
+      darkBackgroundColor = ""
+      # Dark mode text color override
+      darkTextColor = ""
+
+# Social Media Icons Configuration
+[[params.social]]
+  name = "GitHub"
+  icon = "fab fa-github"
+  url = "https://github.com/yourusername"
+  weight = 10
+
+[[params.social]]
+  name = "Twitter"
+  icon = "fab fa-twitter"
+  url = "https://twitter.com/yourusername"
+  weight = 20
+
+[[params.social]]
+  name = "LinkedIn"
+  icon = "fab fa-linkedin"
+  url = "https://linkedin.com/in/yourusername"
+  weight = 30
+
 [menus]
   [[menus.main]]
     identifier = 'home'
@@ -64,6 +109,12 @@ defaultContentLanguageInSubdir = false
     identifier = 'tags'
     pageRef = '/tags'
     weight = 40
+
+  # Footer Menu - uses same i18n identifier pattern
+  [[menus.footer]]
+    identifier = 'imprint'
+    pageRef = '/impressum'
+    weight = 10
 
 [languages.de.menus]
   [[languages.de.menus.main]]
@@ -89,6 +140,13 @@ defaultContentLanguageInSubdir = false
     name = 'Schlagwörter'
     pageRef = '/tags'
     weight = 40
+
+  # Footer Menu - German translations
+  [[languages.de.menus.footer]]
+    identifier = 'imprint'
+    name = 'Impressum'
+    pageRef = '/impressum'
+    weight = 10
 
 [module]
   [module.hugoVersion]

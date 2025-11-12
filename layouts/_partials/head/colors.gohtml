@@ -18,6 +18,13 @@ Configuration in hugo.toml:
     secondary = "#9ed98e"
     accent = "#c5e8a1"
 
+[params.footer.style]
+  fontFamily = ""
+  backgroundColor = ""
+  textColor = ""
+  darkBackgroundColor = ""
+  darkTextColor = ""
+
 Usage:
 {{ partial "head/colors.gohtml" . }}
 =============================================================================
@@ -34,6 +41,19 @@ Usage:
   --cream-beige: {{ .background | default "#f2e8cf" }};
   --red-accent: {{ .highlight | default "#bc4749" }};
   {{- end }}
+  
+  {{- with site.Params.footer.style }}
+  /* Footer Custom Styling */
+  {{- if .fontFamily }}
+  --footer-font-family: {{ .fontFamily }};
+  {{- end }}
+  {{- if .backgroundColor }}
+  --footer-bg-color: {{ .backgroundColor }};
+  {{- end }}
+  {{- if .textColor }}
+  --footer-text-color: {{ .textColor }};
+  {{- end }}
+  {{- end }}
 }
 
 [data-theme="dark"] {
@@ -42,6 +62,16 @@ Usage:
   --primary-dark-green: {{ .primary | default "#7fc97f" }};
   --medium-green: {{ .secondary | default "#9ed98e" }};
   --light-green: {{ .accent | default "#c5e8a1" }};
+  {{- end }}
+  
+  {{- with site.Params.footer.style }}
+  /* Footer Dark Mode Custom Styling */
+  {{- if .darkBackgroundColor }}
+  --footer-bg-color: {{ .darkBackgroundColor }};
+  {{- end }}
+  {{- if .darkTextColor }}
+  --footer-text-color: {{ .darkTextColor }};
+  {{- end }}
   {{- end }}
 }
 </style>
