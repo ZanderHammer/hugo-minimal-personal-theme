@@ -4,6 +4,12 @@ date: 2024-05-12T09:30:00+01:00
 draft: false
 description: "A comprehensive showcase of syntax highlighting for multiple programming languages in Hugo"
 summary: "Showcase of Hugo/Chroma syntax highlighting across many languages with configurable styles, line numbers, and line highlighting."
+
+# Preview Images (responsive)
+image_desktop: "/img/portrait.png"  # 3:1 ratio for desktop/tablet
+image_mobile: "/img/portrait.png"   # 5:4 ratio for mobile
+image: "/img/portrait.png"          # Fallback
+
 tags: ["syntax-highlighting", "code", "programming", "chroma"]
 categories: ["documentation", "development"]
 author: "Hugo Demo"
