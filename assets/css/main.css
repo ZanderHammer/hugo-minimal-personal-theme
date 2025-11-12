@@ -546,7 +546,7 @@ a.has-text-medium-green:hover {
 /* ===================================
    Responsive Design
    =================================== */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   /* Switch to mobile image variant */
   .post-image-desktop {
     display: none;
