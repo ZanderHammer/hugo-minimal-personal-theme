@@ -82,22 +82,18 @@ Example in hugo.toml:
     {{- /* ===================================================================
          COPYRIGHT NOTICE
          Customizable text with {year} and {site} placeholders
-         Font Awesome heart icon for personal touch
          =================================================================== */ -}}
     {{- if $showCopyright }}
-    <p class="footer-copyright">
       {{- $copyrightText := $footerConfig.copyrightText | default "" }}
       {{- if $copyrightText }}
+    <p class="footer-copyright">
         {{- $year := now.Year }}
         {{- $siteName := site.Title }}
         {{- $text := replace $copyrightText "{year}" (string $year) }}
         {{- $text = replace $text "{site}" $siteName }}
         {{ $text | safeHTML }}
-      {{- else }}
-        {{- /* Default fallback */ -}}
-        {{ i18n "createdWith" }} <i class="fas fa-heart"></i> {{ i18n "and" }} <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a>
-      {{- end }}
     </p>
+      {{- end }}
     {{- end }}
     
 
