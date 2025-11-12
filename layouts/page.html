@@ -31,10 +31,25 @@ Structure:
       {{- /* Desktop/Tablet Image (3:1 ratio) */ -}}
       <figure class="image is-3by1 mb-5 post-image-desktop">
         {{- /* Use image_desktop if available, fallback to image, or show placeholder */ -}}
+        {{ $desktopImg := "" }}
         {{ if .Params.image_desktop }}
-        <img src="{{ .Params.image_desktop }}" alt="{{ .Title }}">
+          {{ $resource := .Resources.GetMatch .Params.image_desktop }}
+          {{ if $resource }}
+            {{ $desktopImg = $resource.RelPermalink }}
+          {{ else }}
+            {{ $desktopImg = .Params.image_desktop }}
+          {{ end }}
         {{ else if .Params.image }}
-        <img src="{{ .Params.image }}" alt="{{ .Title }}">
+          {{ $resource := .Resources.GetMatch .Params.image }}
+          {{ if $resource }}
+            {{ $desktopImg = $resource.RelPermalink }}
+          {{ else }}
+            {{ $desktopImg = .Params.image }}
+          {{ end }}
+        {{ end }}
+        
+        {{ if $desktopImg }}
+        <img src="{{ $desktopImg }}" alt="{{ .Title }}">
         {{ else }}
         {{- /* CSS class for styled placeholder */ -}}
         <div class="post-image-placeholder"></div>
@@ -44,10 +59,25 @@ Structure:
       {{- /* Mobile Image (5:4 ratio) */ -}}
       <figure class="image is-5by4 mb-5 post-image-mobile">
         {{- /* Use image_mobile if available, fallback to image, or show placeholder */ -}}
+        {{ $mobileImg := "" }}
         {{ if .Params.image_mobile }}
-        <img src="{{ .Params.image_mobile }}" alt="{{ .Title }}">
+          {{ $resource := .Resources.GetMatch .Params.image_mobile }}
+          {{ if $resource }}
+            {{ $mobileImg = $resource.RelPermalink }}
+          {{ else }}
+            {{ $mobileImg = .Params.image_mobile }}
+          {{ end }}
         {{ else if .Params.image }}
-        <img src="{{ .Params.image }}" alt="{{ .Title }}">
+          {{ $resource := .Resources.GetMatch .Params.image }}
+          {{ if $resource }}
+            {{ $mobileImg = $resource.RelPermalink }}
+          {{ else }}
+            {{ $mobileImg = .Params.image }}
+          {{ end }}
+        {{ end }}
+        
+        {{ if $mobileImg }}
+        <img src="{{ $mobileImg }}" alt="{{ .Title }}">
         {{ else }}
         {{- /* CSS class for styled placeholder */ -}}
         <div class="post-image-placeholder"></div>
