@@ -1,0 +1,101 @@
+# =============================================================================
+# DEUTSCHE ÜBERSETZUNGEN
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# MENÜ / NAVIGATION
+# -----------------------------------------------------------------------------
+[menu.home]
+other = "Start"
+
+[menu.posts]
+other = "Beiträge"
+
+[menu.tools]
+other = "Werkzeuge"
+
+[menu.tags]
+other = "Schlagwörter"
+
+# -----------------------------------------------------------------------------
+# ALLGEMEIN / COMMON
+# -----------------------------------------------------------------------------
+[readMore]
+other = "Weiterlesen"
+
+[backToAllPosts]
+other = "Zurück zu allen Posts"
+
+[viewAllPosts]
+other = "Alle Blog-Posts ansehen"
+
+[allTags]
+other = "Alle Tags"
+
+[showAllTags]
+other = "Alle Tags anzeigen"
+
+[viewPosts]
+other = "Beiträge anzeigen"
+
+[previous]
+other = "Vorherige"
+
+[next]
+other = "Nächste"
+
+[page]
+other = "Seite"
+
+[goToPage]
+other = "Gehe zu Seite"
+
+# -----------------------------------------------------------------------------
+# STARTSEITE
+# -----------------------------------------------------------------------------
+[recentBlogPosts]
+other = "Aktuelle Blog-Posts"
+
+# -----------------------------------------------------------------------------
+# POST CARD
+# -----------------------------------------------------------------------------
+[readingTime]
+other = "Min."
+
+# -----------------------------------------------------------------------------
+# TAXONOMY (Tags Übersicht)
+# -----------------------------------------------------------------------------
+[tag]
+one = "Tag"
+other = "Tags"
+
+[post]
+one = "Beitrag"
+other = "Beiträge"
+
+[allTagsDetail]
+other = "Alle Tags im Detail"
+
+# -----------------------------------------------------------------------------
+# TERM (Einzelner Tag)
+# -----------------------------------------------------------------------------
+[postsWithTag]
+other = "Beiträge mit diesem Tag"
+
+# -----------------------------------------------------------------------------
+# SECTION (Posts Übersicht)
+# -----------------------------------------------------------------------------
+[frequentTags]
+other = "Häufige Tags"
+
+# -----------------------------------------------------------------------------
+# FOOTER
+# -----------------------------------------------------------------------------
+[createdWith]
+other = "Erstellt mit"
+
+[and]
+other = "und"
+
+[imprint]
+other = "Impressum"

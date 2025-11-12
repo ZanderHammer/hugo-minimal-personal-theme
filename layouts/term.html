@@ -41,7 +41,7 @@ Structure:
       
       {{- /* Number of posts with this tag (singular/plural logic) */ -}}
       <p class="subtitle is-5 has-text-grey">
-        {{ len .Pages }} {{ if eq (len .Pages) 1 }}Beitrag{{ else }}Beiträge{{ end }} mit diesem Tag
+        {{ len .Pages }} {{ i18n "postsWithTag" }}
       </p>
       
       {{- /* Link back to tag overview */ -}}
@@ -50,7 +50,7 @@ Structure:
           <span class="icon">
             <i class="fa-solid fa-arrow-left"></i>
           </span>
-          <span>Alle Tags anzeigen</span>
+          <span>{{ i18n "showAllTags" }}</span>
         </a>
       </div>
     </div>
@@ -77,7 +77,7 @@ Structure:
         <span class="icon">
           <i class="fa-solid fa-arrow-left"></i>
         </span>
-        <span>Alle Tags anzeigen</span>
+        <span>{{ i18n "showAllTags" }}</span>
       </a>
     </div>
   </div>

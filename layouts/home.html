@@ -73,7 +73,7 @@ Structure:
          RECENT BLOG POSTS
          =================================================================== */ -}}
     <div class="mt-6">
-      <h2 class="title is-3 has-text-primary-dark mb-4">Aktuelle Blog-Posts</h2>
+      <h2 class="title is-3 has-text-primary-dark mb-4">{{ i18n "recentBlogPosts" }}</h2>
       
       {{- /* Get all pages from "posts" section and show first 3 */ -}}
       {{ $posts := where .Site.RegularPages "Section" "posts" }}
@@ -88,7 +88,7 @@ Structure:
           <span class="icon">
             <i class="fa-solid fa-arrow-right"></i>
           </span>
-          <span>Alle Blog-Posts ansehen</span>
+          <span>{{ i18n "viewAllPosts" }}</span>
         </a>
       </div>
     </div>

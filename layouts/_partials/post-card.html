@@ -63,7 +63,7 @@ Layout:
         <span class="icon">
           <i class="fa-solid fa-clock"></i>
         </span>
-        <span>{{ .ReadingTime }} Min.</span>
+        <span>{{ .ReadingTime }} {{ i18n "readingTime" }}</span>
       </span>
     </p>
     {{ end }}
@@ -95,7 +95,7 @@ Layout:
        =================================================================== */ -}}
   <footer class="card-footer">
     <a href="{{ .RelPermalink }}" class="card-footer-item has-text-medium-green">
-      Weiterlesen
+      {{ i18n "readMore" }}
     </a>
   </footer>
 </div>

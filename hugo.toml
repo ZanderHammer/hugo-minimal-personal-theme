@@ -1,7 +1,9 @@
 baseURL = 'https://example.org/'
-languageCode = 'en-US'
+languageCode = 'en'
 title = 'My New Hugo Site'
 version = '0.0.1'
+
+DefaultContentLanguage = "en"
 
 [pagination]
   pagerSize = 10
@@ -23,22 +25,22 @@ version = '0.0.1'
 
 [menus]
   [[menus.main]]
-    name = 'Home'
+    identifier = 'home'
     pageRef = '/'
     weight = 10
 
   [[menus.main]]
-    name = 'Posts'
+    identifier = 'posts'
     pageRef = '/posts'
     weight = 20
 
   [[menus.main]]
-    name = 'Tools'
+    identifier = 'tools'
     pageRef = '/tools'
     weight = 30
 
   [[menus.main]]
-    name = 'Tags'
+    identifier = 'tags'
     pageRef = '/tags'
     weight = 40
 
