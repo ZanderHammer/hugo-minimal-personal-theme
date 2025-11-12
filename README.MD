@@ -21,7 +21,7 @@ Then update your `hugo.toml`:
 ```toml
 theme = "minimal-personal"
 ```
-
+v
 ## Requirements
 
 - Hugo 0.152.2 or higher (Extended version recommended)
