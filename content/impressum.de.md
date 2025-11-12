@@ -1,5 +1,6 @@
 ---
 title: "Impressum"
+url: "/impressum/"
 date: 2025-10-31
 draft: false
 layout: "impressum"

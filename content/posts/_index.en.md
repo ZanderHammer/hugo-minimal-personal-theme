@@ -1,5 +1,6 @@
 +++
 title = 'Posts'
+url = '/posts/'
 date = 2025-11-01T18:30:00+01:00
 draft = false
 +++

@@ -1,13 +1,14 @@
 +++
 title = 'Home'
+url = '/'
 date = 2023-01-01T08:00:00-07:00
 draft = false
 portrait = '/img/portrait.png'
 
-# Social Links - Füge hinzu oder entferne nach Belieben
+# Social Links - Add or remove as you like
 [[socialLinks]]
 name = "Email"
-url = "mailto:deine@email.de"
+url = "mailto:your@email.com"
 icon = "fas fa-envelope"
 
 [[socialLinks]]
@@ -52,10 +53,10 @@ icon = "fab fa-threads"
 
 # [[socialLinks]]
 # name = "Website"
-# url = "https://deine-website.de"
+# url = "https://your-website.com"
 # icon = "fas fa-globe"
 +++
 
-**[Dein Name]**
+**[Your Name]**
 
-Ich beschäftige mich mit **[Deine Themen/Interessen]** und teile hier meine Gedanken, Erfahrungen und Projekte.
+I work with **[Your Topics/Interests]** and share my thoughts, experiences and projects here.
