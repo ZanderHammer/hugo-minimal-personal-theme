@@ -83,7 +83,7 @@ Structure:
     {{- /* Get all regular pages of this section (including from theme content) */ -}}
     {{ $pages := where .Site.RegularPages "Section" "==" .Section }}
     {{- /* Pagination: Splits pages into multiple pages */ -}}
-    {{ $paginator := .Paginate $pages }}
+    {{ $paginator := .Paginate ($pages.ByDate.Reverse) }}
     
     {{- /* Show each page as post card */ -}}
     {{ range $paginator.Pages }}

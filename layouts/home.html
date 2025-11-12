@@ -77,7 +77,7 @@ Structure:
       
       {{- /* Get all pages from "posts" section (including from theme) and show first 3 */ -}}
       {{ $posts := where .Site.RegularPages "Section" "==" "posts" }}
-      {{ range first 3 $posts }}
+      {{ range first 3 ($posts.ByDate.Reverse) }}
         {{- /* Use reusable post-card component */ -}}
         {{ partial "post-card.html" . }}
       {{ end }}
