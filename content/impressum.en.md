@@ -1,6 +1,6 @@
 ---
 title: "Imprint"
-url: "/en/imprint/"
+url: "/imprint/"
 date: 2025-10-31
 draft: false
 layout: "impressum"
