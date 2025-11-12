@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Responsive design optimized for mobile devices
   - Full documentation in README.md with examples
   - Example configuration in `exampleSite/hugo.toml`
+  - **Smart footer visibility**: Footer element is automatically hidden when all sections are disabled, preventing empty space on pages
 
 ### Configuration Options
 - `params.footer.showCopyright` - Toggle copyright display
