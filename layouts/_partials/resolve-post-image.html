@@ -1,0 +1,34 @@
+{{- /*
+=============================================================================
+RESOLVE POST IMAGE PARTIAL (resolve-post-image.html)
+=============================================================================
+Helper partial to resolve post image URLs from front matter parameters.
+Handles both page resources and direct URLs.
+
+Usage:
+{{ $imageUrl := partial "resolve-post-image.html" (dict "page" . "param" "image_desktop") }}
+
+Parameters (passed as dict):
+- page: The page context (.)
+- param: The front matter parameter name (e.g., "image_desktop", "image_mobile")
+
+Returns:
+- Image URL (Permalink) if found, empty string otherwise
+=============================================================================
+*/ -}}
+
+{{- $page := .page -}}
+{{- $param := .param -}}
+{{- $imageUrl := "" -}}
+
+{{- if index $page.Params $param -}}
+  {{- $paramValue := index $page.Params $param -}}
+  {{- $resource := $page.Resources.GetMatch $paramValue -}}
+  {{- if $resource -}}
+    {{- $imageUrl = $resource.Permalink -}}
+  {{- else -}}
+    {{- $imageUrl = $paramValue -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return $imageUrl -}}
