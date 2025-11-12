@@ -12,13 +12,14 @@ Context: Expects a Page variable with:
 - .Params.image (optional): Featured image URL
 - .LinkTitle: Page title
 - .Date (optional): Publication date
+- .ReadingTime: Estimated reading time in minutes
 - .Summary (optional): Summary
 - .Params.tags (optional): Array of tags
 - .RelPermalink: URL to page
 
 Layout:
 1. Featured image (3:1 ratio) or placeholder
-2. Card content (title, date, summary, tags)
+2. Card content (title, date, reading time, summary, tags)
 3. Card footer with "Read more" link
 =============================================================================
 */ -}}
@@ -45,17 +46,25 @@ Layout:
        =================================================================== */ -}}
   <div class="card-content">
     {{- /* Post title as link */ -}}
-    <p class="title is-5">
+    <p class="title is-5 mb-2">
       <a href="{{ .RelPermalink }}" class="has-text-primary-dark">{{ .LinkTitle }}</a>
     </p>
     
-    {{- /* Publication date (if present) */ -}}
+    {{- /* Publication date and reading time (if present) */ -}}
     {{ if .Date }}
-    <p class="subtitle is-6 has-text-grey">
+    <p class="subtitle is-6 has-text-grey mb-4">
       {{- /* ISO format for search engines, localized format for display */ -}}
       <time datetime="{{ .Date.Format "2006-01-02" }}">
         {{ .Date.Format "02.01.2006" }}
       </time>
+      {{- /* Reading time */ -}}
+      <span class="mx-2">•</span>
+      <span class="icon-text">
+        <span class="icon">
+          <i class="fa-solid fa-clock"></i>
+        </span>
+        <span>{{ .ReadingTime }} Min.</span>
+      </span>
     </p>
     {{ end }}
     
