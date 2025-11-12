@@ -54,7 +54,6 @@ Example in hugo.toml:
          =================================================================== */ -}}
     {{- if and $showSocialIcons site.Params.social }}
     <div class="footer-social">
-      <p class="footer-social-label">{{ i18n "followMe" }}</p>
       <div class="footer-social-icons">
         {{- range sort site.Params.social "weight" }}
         <a href="{{ .url }}" 
