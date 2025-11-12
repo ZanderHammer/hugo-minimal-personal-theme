@@ -59,7 +59,7 @@ Structure:
          LIST OF POSTS WITH PAGINATION
          =================================================================== */ -}}
     {{- /* Pagination: Splits posts into multiple pages */ -}}
-    {{ $paginator := .Paginate .Pages }}
+    {{ $paginator := .Paginate (.Pages.ByDate.Reverse) }}
     
     {{- /* Show each post as card */ -}}
     {{ range $paginator.Pages }}
