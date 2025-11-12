@@ -157,7 +157,7 @@ body {
 .site-footer {
   background-color: var(--footer-bg-color, var(--bg-color));
   border-top: 1px solid var(--header-border);
-  padding: 2rem 0 1.5rem;
+  padding: 1.25rem 0 1.5rem;
   text-align: center;
   transition: background-color 0.3s ease, border-color 0.3s ease;
   font-family: var(--footer-font-family, inherit);
@@ -169,7 +169,7 @@ body {
 
 /* Footer Social Icons */
 .footer-social {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .footer-social-label {
@@ -217,7 +217,7 @@ body {
 .footer-copyright {
   color: var(--footer-text-color, var(--text-color));
   font-size: 0.9rem;
-  margin: 0 0 0.75rem 0;
+  margin: 0 0 1.25rem 0;
 }
 
 .footer-copyright a {
@@ -245,7 +245,7 @@ body {
 .footer-hugo-credit {
   color: var(--footer-text-color, var(--text-color));
   font-size: 0.85rem;
-  margin: 0.5rem 0 0 0;
+  margin: 0 0 1.25rem 0;
   opacity: 0.8;
 }
 
@@ -272,7 +272,7 @@ body {
 
 /* Footer Menu */
 .footer-menu {
-  margin-top: 0.5rem;
+  margin-top: 0;
 }
 
 .footer-menu-list {
