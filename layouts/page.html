@@ -28,9 +28,25 @@ Structure:
       {{- /* ===================================================================
            FEATURED IMAGE
            =================================================================== */ -}}
-      <figure class="image is-3by1 mb-5">
-        {{- /* Featured image from front matter or placeholder */ -}}
-        {{ if .Params.image }}
+      {{- /* Desktop/Tablet Image (3:1 ratio) */ -}}
+      <figure class="image is-3by1 mb-5 post-image-desktop">
+        {{- /* Use image_desktop if available, fallback to image, or show placeholder */ -}}
+        {{ if .Params.image_desktop }}
+        <img src="{{ .Params.image_desktop }}" alt="{{ .Title }}">
+        {{ else if .Params.image }}
+        <img src="{{ .Params.image }}" alt="{{ .Title }}">
+        {{ else }}
+        {{- /* CSS class for styled placeholder */ -}}
+        <div class="post-image-placeholder"></div>
+        {{ end }}
+      </figure>
+      
+      {{- /* Mobile Image (5:4 ratio) */ -}}
+      <figure class="image is-5by4 mb-5 post-image-mobile">
+        {{- /* Use image_mobile if available, fallback to image, or show placeholder */ -}}
+        {{ if .Params.image_mobile }}
+        <img src="{{ .Params.image_mobile }}" alt="{{ .Title }}">
+        {{ else if .Params.image }}
         <img src="{{ .Params.image }}" alt="{{ .Title }}">
         {{ else }}
         {{- /* CSS class for styled placeholder */ -}}
