@@ -81,7 +81,7 @@ defaultContentLanguageInSubdir = false
   [[languages.de.menus.main]]
     identifier = 'tools'
     name = 'Werkzeuge'
-    pageRef = '/tools'
+    pageRef = '/werkzeuge'
     weight = 30
 
   [[languages.de.menus.main]]
