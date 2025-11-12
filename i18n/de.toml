@@ -18,10 +18,10 @@
 #
 # BEISPIELE FÜR NEUE EINTRÄGE:
 # 
-#   [beispiel]
+#   [example]
 #   other = "Beispieltext"
 #
-#   [beispiel_plural]
+#   [example_plural]
 #   one = "1 Element"
 #   other = "{{ .Count }} Elemente"
 #
