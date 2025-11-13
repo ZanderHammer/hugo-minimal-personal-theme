@@ -6,11 +6,11 @@ description: "Ein umfassender Leitfaden zu Hugos integrierten Shortcodes und der
 summary: "Meistern Sie Hugo-Shortcodes: Betten Sie Videos, Bilder, Code und Social Media ein, ohne HTML zu schreiben."
 
 # Preview Images (responsive)
-image_desktop: "/img/portrait.png"  # 3:1 ratio for desktop/tablet
-image_mobile: "/img/portrait.png"   # 5:4 ratio for mobile
-image: "/img/portrait.png"          # Fallback
+image_desktop: "3-1_hsc.webp"  # 3:1 ratio for desktop/tablet
+image_mobile: "5-4_hsc.webp"   # 5:4 ratio for mobile
 
-tags: ["shortcodes", "hugo", "funktionen"]
+
+tags: ["shortcodes", "hugo", "funktionen", "demo"]
 categories: ["dokumentation"]
 author: "Hugo Demo"
 translationKey: "hugo-shortcodes-showcase"

@@ -1,6 +1,6 @@
 ---
 title: "Front Matter und Taxonomien Demo"
-date: 2025-10-10T18:20:00+01:00
+date: 2025-11-13T18:20:00+01:00
 draft: false
 description: "Demonstration von Hugos leistungsstarken Front Matter-Funktionen und dem Taxonomiesystem"
 summary: "Erfahren Sie, wie Sie Front Matter-Variablen, benutzerdefinierte Parameter, Taxonomien und Metadaten in Hugo verwenden"
@@ -8,7 +8,6 @@ summary: "Erfahren Sie, wie Sie Front Matter-Variablen, benutzerdefinierte Param
 # Vorschaubilder (responsive)
 image_desktop: "fm_3-1.webp"        # 3:1 Verhältnis für Desktop/Tablet
 image_mobile: "fm_5-4.webp"         # 5:4 Verhältnis für Mobilgeräte
-image: "fm_3-1.webp"                # Fallback
 
 # Taxonomien
 tags:

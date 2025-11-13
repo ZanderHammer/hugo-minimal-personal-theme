@@ -6,9 +6,9 @@ description: "Eine umfassende Demonstration der Markdown-Formatierungsmöglichke
 summary: "Vollständiger Leitfaden zu Markdown in Hugo: Textformatierung, Listen, Tabellen, Code-Blöcke, Fußnoten und mehr."
 
 # Preview Images (responsive)
-image_desktop: "/img/portrait.png"  # 3:1 ratio for desktop/tablet
-image_mobile: "/img/portrait.png"   # 5:4 ratio for mobile
-image: "/img/portrait.png"          # Fallback
+image_desktop: "3-1_mdf.webp"  # 3:1 ratio for desktop/tablet
+image_mobile: "5-4_mdf.webp"   # 5:4 ratio for mobile
+
 
 tags: ["markdown", "demo", "formatierung"]
 categories: ["dokumentation"]
