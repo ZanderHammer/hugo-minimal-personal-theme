@@ -80,6 +80,7 @@ Add this to your `hugo.toml`:
   showCopyright = true
   showFooterMenu = true
   showSocialIcons = true
+  showHugoCredit = false
   
   # Copyright text with placeholders
   # {year} = current year
@@ -270,7 +271,10 @@ You can selectively disable footer sections:
   showCopyright = true       # Show copyright text
   showFooterMenu = false     # Hide footer menu
   showSocialIcons = false    # Hide social icons
+  showHugoCredit = false     # Hide "Created with ❤️ and Hugo" message
 ```
+
+**Note:** If all footer sections are disabled, the footer element will not be rendered at all, avoiding empty space on your pages.
 
 ## Dependencies
 
