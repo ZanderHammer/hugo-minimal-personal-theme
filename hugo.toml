@@ -1,7 +1,14 @@
+# ==============================================================================
+# BASIC CONFIGURATION
+# ==============================================================================
+
 baseURL = 'https://example.org/'
 version = '0.0.1'
 
-# Multilingual Configuration
+# ==============================================================================
+# MULTILINGUAL CONFIGURATION
+# ==============================================================================
+
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 
@@ -26,10 +33,22 @@ defaultContentLanguageInSubdir = false
       posts = "/beitraege/:slug/"
       tools = "/werkzeuge/:slug/"
 
+# ==============================================================================
+# PAGINATION
+# ==============================================================================
+
 [pagination]
   pagerSize = 10
 
+# ==============================================================================
+# THEME PARAMETERS
+# ==============================================================================
+
 [params]
+  
+  # ----------------------------------------------------------------------------
+  # Color Scheme
+  # ----------------------------------------------------------------------------
   [params.colors]
     # Light Mode Colors
     primary = "#386641"
@@ -44,7 +63,98 @@ defaultContentLanguageInSubdir = false
       secondary = "#9ed98e"
       accent = "#c5e8a1"
 
+  # ----------------------------------------------------------------------------
+  # Footer Configuration
+  # ----------------------------------------------------------------------------
+  [params.footer]
+    # Enable/disable footer sections
+    showCopyright = true
+    showFooterMenu = true
+    showSocialIcons = true
+    showHugoCredit = true
+    
+    # Copyright text configuration
+    # Use {year} placeholder for current year
+    # Use {site} placeholder for site title
+    copyrightText = "© {year} {site}. All rights reserved."
+    
+    # Custom footer styling
+    [params.footer.style]
+      fontFamily = ""
+      backgroundColor = ""
+      textColor = ""
+      darkBackgroundColor = ""
+      darkTextColor = ""
+
+  # ----------------------------------------------------------------------------
+  # Social Media Icons
+  # ----------------------------------------------------------------------------
+  [[params.social]]
+    name = "Email"
+    icon = "fas fa-envelope"
+    url = "mailto:your@email.com"
+    weight = 10
+
+  [[params.social]]
+    name = "GitHub"
+    icon = "fab fa-github"
+    url = "https://github.com/username"
+    weight = 20
+
+  [[params.social]]
+    name = "Threads"
+    icon = "fab fa-threads"
+    url = "https://threads.net/@username"
+    weight = 30
+
+  # [[params.social]]
+  #   name = "Twitter/X"
+  #   icon = "fab fa-x-twitter"
+  #   url = "https://x.com/username"
+  #   weight = 40
+
+  # [[params.social]]
+  #   name = "Mastodon"
+  #   icon = "fab fa-mastodon"
+  #   url = "https://mastodon.social/@username"
+  #   weight = 50
+
+  # [[params.social]]
+  #   name = "Instagram"
+  #   icon = "fab fa-instagram"
+  #   url = "https://instagram.com/username"
+  #   weight = 60
+
+  # [[params.social]]
+  #   name = "LinkedIn"
+  #   icon = "fab fa-linkedin"
+  #   url = "https://linkedin.com/in/username"
+  #   weight = 70
+
+  # [[params.social]]
+  #   name = "Facebook"
+  #   icon = "fab fa-facebook"
+  #   url = "https://facebook.com/username"
+  #   weight = 80
+
+  # [[params.social]]
+  #   name = "YouTube"
+  #   icon = "fab fa-youtube"
+  #   url = "https://youtube.com/@username"
+  #   weight = 90
+
+  # [[params.social]]
+  #   name = "Website"
+  #   icon = "fas fa-globe"
+  #   url = "https://your-website.com"
+  #   weight = 100
+
+# ==============================================================================
+# MENUS - ENGLISH (DEFAULT)
+# ==============================================================================
+
 [menus]
+  # Main Navigation
   [[menus.main]]
     identifier = 'home'
     pageRef = '/'
@@ -65,7 +175,18 @@ defaultContentLanguageInSubdir = false
     pageRef = '/tags'
     weight = 40
 
+  # Footer Menu
+  [[menus.footer]]
+    identifier = 'imprint'
+    pageRef = '/impressum'
+    weight = 10
+
+# ==============================================================================
+# MENUS - GERMAN
+# ==============================================================================
+
 [languages.de.menus]
+  # Main Navigation
   [[languages.de.menus.main]]
     identifier = 'home'
     name = 'Start'
@@ -89,6 +210,17 @@ defaultContentLanguageInSubdir = false
     name = 'Schlagwörter'
     pageRef = '/tags'
     weight = 40
+
+  # Footer Menu
+  [[languages.de.menus.footer]]
+    identifier = 'imprint'
+    name = 'Impressum'
+    pageRef = '/impressum'
+    weight = 10
+
+# ==============================================================================
+# MODULE CONFIGURATION
+# ==============================================================================
 
 [module]
   [module.hugoVersion]

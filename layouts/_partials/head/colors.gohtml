@@ -18,6 +18,13 @@ Configuration in hugo.toml:
     secondary = "#9ed98e"
     accent = "#c5e8a1"
 
+[params.footer.style]
+  fontFamily = ""
+  backgroundColor = ""
+  textColor = ""
+  darkBackgroundColor = ""
+  darkTextColor = ""
+
 Usage:
 {{ partial "head/colors.gohtml" . }}
 =============================================================================
@@ -33,6 +40,23 @@ Usage:
   --light-green: {{ .accent | default "#a7c957" }};
   --cream-beige: {{ .background | default "#f2e8cf" }};
   --red-accent: {{ .highlight | default "#bc4749" }};
+  
+  /* RGB values for colors (for use with opacity) */
+  --primary-dark-green-rgb: 56, 102, 65;
+  --medium-green-rgb: 106, 153, 78;
+  {{- end }}
+  
+  {{- with site.Params.footer.style }}
+  /* Footer Custom Styling */
+  {{- if .fontFamily }}
+  --footer-font-family: {{ .fontFamily }};
+  {{- end }}
+  {{- if .backgroundColor }}
+  --footer-bg-color: {{ .backgroundColor }};
+  {{- end }}
+  {{- if .textColor }}
+  --footer-text-color: {{ .textColor }};
+  {{- end }}
   {{- end }}
 }
 
@@ -42,6 +66,20 @@ Usage:
   --primary-dark-green: {{ .primary | default "#7fc97f" }};
   --medium-green: {{ .secondary | default "#9ed98e" }};
   --light-green: {{ .accent | default "#c5e8a1" }};
+  
+  /* RGB values for dark mode colors (for use with opacity) */
+  --primary-dark-green-rgb: 127, 201, 127;
+  --medium-green-rgb: 158, 217, 142;
+  {{- end }}
+  
+  {{- with site.Params.footer.style }}
+  /* Footer Dark Mode Custom Styling */
+  {{- if .darkBackgroundColor }}
+  --footer-bg-color: {{ .darkBackgroundColor }};
+  {{- end }}
+  {{- if .darkTextColor }}
+  --footer-text-color: {{ .darkTextColor }};
+  {{- end }}
   {{- end }}
 }
 </style>

@@ -129,3 +129,18 @@ other = "und"
 
 [imprint]
 other = "Impressum"
+
+[privacy]
+other = "Datenschutz"
+
+[footer.menu.imprint]
+other = "Impressum"
+
+[footer.menu.privacy]
+other = "Datenschutz"
+
+[footer.menu.terms]
+other = "Nutzungsbedingungen"
+
+[footer.menu.contact]
+other = "Kontakt"

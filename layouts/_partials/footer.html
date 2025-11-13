@@ -2,37 +2,132 @@
 =============================================================================
 FOOTER PARTIAL (footer.html)
 =============================================================================
-Site-wide footer with copyright notice and legal links.
+Customizable site-wide footer with copyright, links, and social icons.
 Included on every page via baseof.html.
 
-Contents:
-1. Copyright text with Hugo link
-2. Legal links (e.g. impressum)
+Features:
+1. Copyright text with dynamic year and site name
+2. Customizable footer menu with i18n support
+3. Social media icons
+4. Custom styling options via configuration
 
-Customization:
-- Footer links can be extended in the structure
-- Additional links (privacy, etc.) can be added here
+Configuration:
+- Enable/disable sections via params.footer
+- Customize text, colors, and fonts in hugo.toml
+- Add footer menu items using [menus.footer]
+- Add social icons using [[params.social]]
+- Full i18n support using identifier-based translations
+
+Example in hugo.toml:
+[params.footer]
+  showCopyright = true
+  showFooterMenu = true
+  showSocialIcons = true
+  showHugoCredit = false
+  copyrightText = "© {year} {site}. All rights reserved."
+  
+[[params.social]]
+  name = "GitHub"
+  icon = "fab fa-github"
+  url = "https://github.com/yourusername"
+  
+[[menus.footer]]
+  identifier = 'imprint'
+  pageRef = '/impressum'
+  weight = 10
 =============================================================================
 */ -}}
 
+{{- $footerConfig := site.Params.footer | default dict }}
+{{- $showCopyright := $footerConfig.showCopyright | default true }}
+{{- $showFooterMenu := $footerConfig.showFooterMenu | default true }}
+{{- $showSocialIcons := $footerConfig.showSocialIcons | default true }}
+{{- $showHugoCredit := $footerConfig.showHugoCredit | default false }}
+
+{{- /* ===================================================================
+     FOOTER VISIBILITY LOGIC
+     Only render footer if at least one content section is enabled
+     =================================================================== */ -}}
+{{- $hasSocialIcons := and $showSocialIcons site.Params.social }}
+{{- $hasFooterMenu := and $showFooterMenu site.Menus.footer }}
+{{- $hasVisibleContent := or $hasSocialIcons $showHugoCredit $showCopyright $hasFooterMenu }}
+
+{{- if $hasVisibleContent }}
 <footer class="site-footer">
   <div class="container">
-    {{- /* ===================================================================
-         COPYRIGHT NOTICE
-         Font Awesome heart icon for personal touch
-         =================================================================== */ -}}
-    <p>{{ i18n "createdWith" }} <i class="fas fa-heart"></i> {{ i18n "and" }} <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a></p>
     
     {{- /* ===================================================================
-         LEGAL LINKS
-         Extensible with privacy, terms of use, etc.
+         SOCIAL MEDIA ICONS
+         Displayed at the top of footer if enabled
+         Icons are configured via [[params.social]]
          =================================================================== */ -}}
-    <p class="footer-links">
-      <a href="/impressum/">{{ i18n "imprint" }}</a>
-      {{- /* Add more links here, e.g.:
-      <span class="separator">•</span>
-      <a href="/datenschutz/">Datenschutz</a>
-      */ -}}
+    {{- if and $showSocialIcons site.Params.social }}
+    <div class="footer-social">
+      <div class="footer-social-icons">
+        {{- range sort site.Params.social "weight" }}
+        <a href="{{ .url }}" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           aria-label="{{ .name }}"
+           title="{{ .name }}">
+          <i class="{{ .icon }}"></i>
+        </a>
+        {{- end }}
+      </div>
+    </div>
+    {{- end }}
+
+        {{- /* ===================================================================
+         HUGO CREDIT
+         Optional "Created with ❤️ and Hugo" message
+         Separate from copyright to allow independent control
+         =================================================================== */ -}}
+    {{- if $showHugoCredit }}
+    <p class="footer-hugo-credit">
+      {{ i18n "createdWith" }} <i class="fas fa-heart"></i> {{ i18n "and" }} <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a>
     </p>
+    {{- end }}
+    
+    {{- /* ===================================================================
+         COPYRIGHT NOTICE
+         Customizable text with {year} and {site} placeholders
+         =================================================================== */ -}}
+    {{- if $showCopyright }}
+      {{- $copyrightText := $footerConfig.copyrightText | default "" }}
+      {{- if $copyrightText }}
+    <p class="footer-copyright">
+        {{- $year := now.Year }}
+        {{- $siteName := site.Title }}
+        {{- $text := replace $copyrightText "{year}" (string $year) }}
+        {{- $text = replace $text "{site}" $siteName }}
+        {{ $text | safeHTML }}
+    </p>
+      {{- end }}
+    {{- end }}
+    
+
+    
+    {{- /* ===================================================================
+         FOOTER MENU
+         Links defined via [menus.footer] with i18n support
+         Uses same identifier pattern as main menu
+         =================================================================== */ -}}
+    {{- if and $showFooterMenu (site.Menus.footer) }}
+    <nav class="footer-menu">
+      <ul class="footer-menu-list">
+        {{- range sort site.Menus.footer "Weight" }}
+        <li>
+          {{- $menuName := .Name }}
+          {{- $translatedName := i18n (printf "footer.menu.%s" .Identifier) }}
+          {{- $fallbackName := .Identifier | humanize }}
+          {{- $name := cond (ne $menuName "") $menuName (cond (ne $translatedName "") $translatedName $fallbackName) }}
+          <a href="{{ .URL | relLangURL }}">{{ $name }}</a>
+        </li>
+        {{- end }}
+      </ul>
+    </nav>
+    {{- end }}
+    
   </div>
 </footer>
+{{- end }}
