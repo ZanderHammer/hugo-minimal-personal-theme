@@ -1,18 +1,18 @@
 ---
 title: "Markdown Features Demo"
-date: 2024-01-15T10:00:00+01:00
+date: 2025-11-13T09:00:00+01:00
 draft: false
 description: "A comprehensive demonstration of Markdown formatting capabilities in Hugo"
 summary: "Complete guide to Markdown in Hugo: text formatting, lists, tables, code blocks, footnotes, and more."
 
 # Preview Images (responsive)
-image_desktop: "/img/portrait.png"  # 3:1 ratio for desktop/tablet
-image_mobile: "/img/portrait.png"   # 5:4 ratio for mobile
-image: "/img/portrait.png"          # Fallback
+image_desktop: "3-1_mdf.webp"  # 3:1 ratio for desktop/tablet
+image_mobile: "5-4_mdf.webp"   # 5:4 ratio for mobile
 
 tags: ["markdown", "demo", "formatting"]
 categories: ["documentation"]
 author: "Hugo Demo"
+translationKey: "markdown-features-demo"
 ---
 
 # Heading Level 1

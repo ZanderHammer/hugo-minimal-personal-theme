@@ -1,28 +1,28 @@
 ---
-title: "Syntax Highlighting Showcase"
+title: "Syntax-Hervorhebung Übersicht"
 date: 2025-11-13T15:00:00+01:00
 draft: false
-description: "A comprehensive showcase of syntax highlighting for multiple programming languages in Hugo"
-summary: "Showcase of Hugo/Chroma syntax highlighting across many languages with configurable styles, line numbers, and line highlighting."
+description: "Eine umfassende Übersicht der Syntax-Hervorhebung für mehrere Programmiersprachen in Hugo"
+summary: "Übersicht über Hugo/Chroma-Syntax-Hervorhebung für viele Sprachen mit konfigurierbaren Stilen, Zeilennummern und Zeilenhervorhebung."
 
 # Preview Images (responsive)
 image_desktop: "sh_3-1.webp"  # 3:1 ratio for desktop/tablet
 image_mobile: "sh_5-4.webp"   # 5:4 ratio for mobile
 
-tags: ["syntax-highlighting", "code", "programming", "chroma"]
-categories: ["documentation", "development"]
+tags: ["syntax-hervorhebung", "code", "programmierung", "chroma"]
+categories: ["dokumentation", "entwicklung"]
 author: "Hugo Demo"
 translationKey: "syntax-highlighting-showcase"
 
 ---
 
-## Introduction
+## Einführung
 
-Hugo uses [Chroma](https://github.com/alecthomas/chroma) for syntax highlighting, supporting over 200 programming languages. This post demonstrates syntax highlighting across various languages including JavaScript, Python, Go, Rust, SQL, and many more. See beautiful code examples with line numbers and highlighted lines.
+Hugo verwendet [Chroma](https://github.com/alecthomas/chroma) für die Syntax-Hervorhebung und unterstützt über 200 Programmiersprachen. Dieser Beitrag demonstriert die Syntax-Hervorhebung für verschiedene Sprachen, darunter JavaScript, Python, Go, Rust, SQL und viele mehr. Sieh dir schöne Code-Beispiele mit Zeilennummern und hervorgehobenen Zeilen an.
 
-## Configuration
+## Konfiguration
 
-Enable syntax highlighting in `hugo.toml`:
+Aktiviere die Syntax-Hervorhebung in `hugo.toml`:
 
 ```toml
 [markup]
@@ -42,7 +42,7 @@ Enable syntax highlighting in `hugo.toml`:
     tabWidth = 4
 ```
 
-## Web Development
+## Web-Entwicklung
 
 ### HTML
 
@@ -120,7 +120,7 @@ header {
     .container {
         padding: 0 1rem;
     }
-    
+
     nav ul {
         flex-direction: column;
     }
@@ -138,7 +138,7 @@ class BlogPost {
         this.content = content;
         this.createdAt = new Date();
     }
-    
+
     publish() {
         console.log(`Publishing: ${this.title}`);
         return fetch('/api/posts', {
@@ -198,9 +198,9 @@ interface Author {
 
 class BlogService {
     private posts: Post[] = [];
-    
+
     constructor(private apiUrl: string) {}
-    
+
     async getPosts(): Promise<Post[]> {
         const response = await fetch(this.apiUrl);
         if (!response.ok) {
@@ -209,13 +209,13 @@ class BlogService {
         this.posts = await response.json();
         return this.posts;
     }
-    
+
     getPostById(id: number): Post | undefined {
         return this.posts.find(post => post.id === id);
     }
-    
+
     filterByTag(tag: string): Post[] {
-        return this.posts.filter(post => 
+        return this.posts.filter(post =>
             post.tags.includes(tag)
         );
     }
@@ -229,7 +229,7 @@ function createPair<T, U>(first: T, second: U): [T, U] {
 const pair = createPair<string, number>("age", 25);
 ```
 
-## Backend Languages
+## Backend-Sprachen
 
 ### Python
 
@@ -240,19 +240,19 @@ import asyncio
 
 class BlogPost:
     """A blog post with metadata and content."""
-    
+
     def __init__(self, title: str, author: str, content: str):
         self.title = title
         self.author = author
         self.content = content
         self.created_at = datetime.now()
         self.tags: List[str] = []
-    
+
     def add_tag(self, tag: str) -> None:
         """Add a tag to the post."""
         if tag not in self.tags:
             self.tags.append(tag)
-    
+
     def __repr__(self) -> str:
         return f"BlogPost('{self.title}', by {self.author})"
 
@@ -344,7 +344,7 @@ func postsHandler(w http.ResponseWriter, r *http.Request) {
         Author:  "Gopher",
         Tags:    []string{"go", "hugo"},
     })
-    
+
     w.Header().Set("Content-Type", "application/json")
     json.NewEncoder(w).Encode(service.GetPosts())
 }
@@ -383,7 +383,7 @@ impl Post {
             tags: Vec::new(),
         }
     }
-    
+
     fn add_tag(&mut self, tag: String) {
         if !self.tags.contains(&tag) {
             self.tags.push(tag);
@@ -403,7 +403,7 @@ impl BlogService {
             next_id: 1,
         }
     }
-    
+
     fn add_post(&mut self, mut post: Post) -> u32 {
         let id = self.next_id;
         post.id = id;
@@ -411,11 +411,11 @@ impl BlogService {
         self.next_id += 1;
         id
     }
-    
+
     fn get_post(&self, id: u32) -> Option<&Post> {
         self.posts.get(&id)
     }
-    
+
     fn filter_by_tag(&self, tag: &str) -> Vec<&Post> {
         self.posts.values()
             .filter(|post| post.tags.iter().any(|t| t == tag))
@@ -425,7 +425,7 @@ impl BlogService {
 
 fn main() {
     let mut service = BlogService::new();
-    
+
     let mut post = Post::new(
         0,
         "Hello Rust".to_string(),
@@ -434,13 +434,13 @@ fn main() {
     );
     post.add_tag("rust".to_string());
     post.add_tag("programming".to_string());
-    
+
     let id = service.add_post(post);
     println!("Added post with ID: {}", id);
 }
 ```
 
-## Database & Query Languages
+## Datenbank & Abfragesprachen
 
 ### SQL
 
@@ -482,7 +482,7 @@ INSERT INTO authors (name, email, bio) VALUES
     ('Bob Johnson', 'bob@example.com', 'Developer advocate');
 
 -- Complex query with JOIN
-SELECT 
+SELECT
     p.title,
     p.published_at,
     a.name AS author_name,
@@ -505,7 +505,7 @@ WHERE author_id IN (
 );
 ```
 
-## Configuration Formats
+## Konfigurationsformate
 
 ### YAML
 
@@ -625,7 +625,7 @@ weight = 2
 }
 ```
 
-## Shell Scripts
+## Shell-Skripte
 
 ### Bash
 
@@ -683,9 +683,9 @@ handle_error() {
 trap 'handle_error "Server stopped unexpectedly"' ERR
 ```
 
-## Highlighting Features
+## Hervorhebungsfunktionen
 
-### Line Numbers
+### Zeilennummern
 
 {{< highlight go "linenos=table" >}}
 package main
@@ -697,7 +697,7 @@ func main() {
 }
 {{< /highlight >}}
 
-### Highlight Specific Lines
+### Spezifische Zeilen hervorheben
 
 {{< highlight python "linenos=table,hl_lines=3 5-7,linenostart=1" >}}
 def calculate_sum(numbers):
@@ -713,26 +713,26 @@ result = calculate_sum([1, 2, 3, 4, 5])
 print(f"Sum: {result}")
 {{< /highlight >}}
 
-## Inline Code Highlighting
+## Inline-Code-Hervorhebung
 
-You can highlight inline code: `const message = "Hello"`{.js} or `print("Hello")`{.python}
+Du kannst Inline-Code hervorheben: `const message = "Hello"`{.js} oder `print("Hello")`{.python}
 
-## Conclusion
+## Fazit
 
-Hugo's syntax highlighting with Chroma provides:
+Hugos Syntax-Hervorhebung mit Chroma bietet:
 
-- ✅ Support for 200+ languages
-- ✅ Multiple highlighting styles
-- ✅ Line numbers and line highlighting
-- ✅ Inline code highlighting
-- ✅ Code fences and shortcodes
-- ✅ Customizable themes
+- ✅ Unterstützung für über 200 Sprachen
+- ✅ Mehrere Hervorhebungsstile
+- ✅ Zeilennummern und Zeilenhervorhebung
+- ✅ Inline-Code-Hervorhebung
+- ✅ Code-Fences und Shortcodes
+- ✅ Anpassbare Themes
 
-Perfect for technical blogs and documentation sites!
+Perfekt für technische Blogs und Dokumentationsseiten!
 
-## Available Styles
+## Verfügbare Stile
 
-Popular Chroma styles:
+Beliebte Chroma-Stile:
 - monokai
 - dracula
 - github
@@ -743,7 +743,7 @@ Popular Chroma styles:
 - vs
 - xcode
 
-Configure in `hugo.toml`:
+Konfiguriere in `hugo.toml`:
 ```toml
 [markup.highlight]
 style = "monokai"

@@ -1,18 +1,18 @@
 ---
 title: "Hugo Shortcodes Showcase"
-date: 2024-03-05T16:45:00+01:00
+date: 2025-11-13T12:00:00+01:00
 draft: false
 description: "A comprehensive guide to Hugo's built-in shortcodes and how to use them"
 summary: "Master Hugo shortcodes: embed videos, images, code, and social media without writing HTML."
 
 # Preview Images (responsive)
-image_desktop: "/img/portrait.png"  # 3:1 ratio for desktop/tablet
-image_mobile: "/img/portrait.png"   # 5:4 ratio for mobile
-image: "/img/portrait.png"          # Fallback
+image_desktop: "3-1_hsc.webp"  # 3:1 ratio for desktop/tablet
+image_mobile: "5-4_hsc.webp"   # 5:4 ratio for mobile
 
 tags: ["shortcodes", "hugo", "features"]
 categories: ["documentation"]
 author: "Hugo Demo"
+translationKey: "hugo-shortcodes-showcase"
 ---
 
 ## Introduction
