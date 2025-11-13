@@ -1,0 +1,53 @@
+{{- $currentLang := .Language.Lang -}}
+{{- $currentLangName := .Language.LanguageName -}}
+{{- $isRegularPage := and (ne .Kind "home") (ne .Kind "section") (ne .Kind "taxonomy") (ne .Kind "term") -}}
+
+<div class="language-switcher">
+  <button class="language-toggle" aria-label="{{ i18n "languageSwitcher" }}" aria-haspopup="true" aria-expanded="false">
+    <i class="fas fa-globe"></i>
+    <span class="current-lang">{{ $currentLangName }}</span>
+    <i class="fas fa-chevron-down"></i>
+  </button>
+
+  <div class="language-menu" role="menu">
+    {{- range .Site.Languages -}}
+      {{- $lang := .Lang -}}
+      {{- $isCurrent := eq $lang $currentLang -}}
+      {{- $targetURL := "#" -}}
+      {{- $hasTranslation := false -}}
+
+      {{- if not $isCurrent -}}
+        {{- /* Check if current page has a translation in this language */ -}}
+        {{- if $.IsTranslated -}}
+          {{- range $.Translations -}}
+            {{- if eq .Language.Lang $lang -}}
+              {{- $targetURL = .RelPermalink -}}
+              {{- $hasTranslation = true -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+
+        {{- /* If no translation found, go to language homepage */ -}}
+        {{- if not $hasTranslation -}}
+          {{- $targetURL = printf "/%s/" $lang -}}
+        {{- end -}}
+      {{- end -}}
+
+      {{- /* Show language if: it's current OR (it's a regular page AND has translation) OR (not a regular page - show all) */ -}}
+      {{- $shouldShow := or $isCurrent (or (not $isRegularPage) $hasTranslation) -}}
+
+      {{- if $shouldShow -}}
+        <a
+          href="{{ $targetURL }}"
+          class="language-option{{ if $isCurrent }} active{{ end }}"
+          lang="{{ .Lang }}"
+          {{ if $isCurrent }}aria-current="true"{{ end }}
+          role="menuitem"
+        >
+          <span class="lang-name">{{ .LanguageName }}</span>
+          {{ if $isCurrent }}<i class="fas fa-check"></i>{{ end }}
+        </a>
+      {{- end -}}
+    {{- end -}}
+  </div>
+</div>

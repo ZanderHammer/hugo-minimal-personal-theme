@@ -8,6 +8,7 @@ A clean, minimalistic Hugo theme designed for personal websites and blogs.
 - Dark mode support with automatic theme switching
 - Responsive layout that works on desktop and mobile devices
 - Multilingual support (i18n) with English and German translations
+- **Language switcher component** for easy switching between available languages
 - Customizable color palette via configuration
 - **Fully customizable footer** with copyright text, custom links, and social media icons
 - Built with Bulma 1.0.4 CSS framework
@@ -47,6 +48,129 @@ The theme uses the following color scheme:
 - **Red Accent**: `#bc4749`
 
 ## Configuration
+
+### Multilingual Support & Language Switcher
+
+The theme includes built-in support for multilingual websites with an automatic language switcher that appears when multiple languages are configured.
+
+#### Basic Multilingual Setup
+
+Configure languages in your `hugo.toml`:
+
+```toml
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+
+[languages]
+  [languages.en]
+    languageCode = "en-US"
+    languageName = "English"
+    title = "My Site"
+    weight = 1
+
+  [languages.de]
+    languageCode = "de-DE"
+    languageName = "Deutsch"
+    title = "Meine Seite"
+    weight = 2
+```
+
+#### Language Switcher Behavior
+
+The language switcher automatically:
+- Displays in the header between the navigation menu and dark mode toggle
+- Shows the current language with a globe icon
+- Provides a dropdown menu with all available languages
+- Links to translated versions of the current page when available
+- Falls back to the homepage if a translation doesn't exist
+- Adapts to mobile layouts (centered, full-width)
+- Supports dark mode styling
+
+#### Linking Translated Content
+
+To link content across languages, use the `translationKey` parameter in your content frontmatter:
+
+```yaml
+# content/posts/my-post.en.md
+---
+title: "My Post"
+translationKey: "my-post"
+---
+
+# content/posts/my-post.de.md
+---
+title: "Mein Beitrag"
+translationKey: "my-post"
+---
+```
+
+When users click the language switcher on a page with translations, they'll be taken directly to the translated version.
+
+#### Language-Specific Configuration
+
+You can customize settings per language:
+
+```toml
+[languages.en]
+  languageCode = "en-US"
+  languageName = "English"
+  title = "My Site"
+  weight = 1
+
+  [languages.en.params]
+    description = "My personal website"
+
+[languages.de]
+  languageCode = "de-DE"
+  languageName = "Deutsch"
+  title = "Meine Seite"
+  weight = 2
+
+  [languages.de.params]
+    description = "Meine persönliche Webseite"
+```
+
+#### Language-Specific Permalinks
+
+Customize URL structures per language:
+
+```toml
+[languages.de]
+  languageCode = "de-DE"
+  languageName = "Deutsch"
+
+  [languages.de.permalinks]
+    posts = "/beitraege/:slug/"
+    tools = "/werkzeuge/:slug/"
+```
+
+#### Adding More Languages
+
+To add additional languages:
+
+1. Add the language to your `hugo.toml`:
+
+```toml
+[languages.fr]
+  languageCode = "fr-FR"
+  languageName = "Français"
+  title = "Mon Site"
+  weight = 3
+```
+
+2. Create translation file at `i18n/fr.toml`:
+
+```toml
+[languageSwitcher]
+other = "Changer de langue"
+
+[menu.home]
+other = "Accueil"
+```
+
+3. Create content with language suffix (e.g., `content/posts/my-post.fr.md`)
+
+The language switcher will automatically display all configured languages.
 
 ### Customizing Colors
 

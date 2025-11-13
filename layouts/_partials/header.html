@@ -2,20 +2,22 @@
 =============================================================================
 HEADER PARTIAL (header.html)
 =============================================================================
-Site-wide header with navigation and dark mode toggle.
+Site-wide header with navigation, language switcher, and dark mode toggle.
 Included on every page via baseof.html.
 
 Components:
 1. Main navigation (from hugo.toml menu.main)
-2. Dark mode toggle button
+2. Language switcher (dropdown for multilingual sites)
+3. Dark mode toggle button
 
 CSS classes:
 - site-header: Container for entire header
-- header-content: Flex container for navigation and toggle
+- header-content: Flex container for navigation and controls
+- language-switcher: Language selection dropdown
 - dark-mode-toggle: Button for dark mode toggle
 
 JavaScript:
-- main.js contains the dark mode toggle logic
+- main.js contains the dark mode toggle logic and language switcher interactions
 =============================================================================
 */ -}}
 
@@ -27,7 +29,16 @@ JavaScript:
            Loads menu with ID "main" from hugo.toml
            =================================================================== */ -}}
       {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
-      
+
+      {{- /* ===================================================================
+           LANGUAGE SWITCHER
+           Dropdown menu for switching between available site languages
+           Only shown if multiple languages are configured
+           =================================================================== */ -}}
+      {{- if gt (len .Site.Languages) 1 -}}
+        {{ partial "language-switcher.html" . }}
+      {{- end -}}
+
       {{- /* ===================================================================
            DARK MODE TOGGLE BUTTON
            JavaScript in main.js handles click events and theme switching
