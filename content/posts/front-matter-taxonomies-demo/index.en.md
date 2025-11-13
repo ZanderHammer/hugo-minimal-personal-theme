@@ -32,6 +32,9 @@ aliases:
   - /old-path/front-matter
   - /legacy/metadata-guide
 
+# Translation key to link with German version
+translationKey: "front-matter-taxonomies-demo"
+
 # SEO and Social
 keywords:
   - hugo front matter
